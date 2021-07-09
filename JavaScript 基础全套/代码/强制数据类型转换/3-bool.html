@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>将其它数据类型转换为布尔值</title>
+    <script>
+        /*
+        调用 boolean() 函数
+            - 数字 --> 布尔值
+                除了 0 和 NaN，其余都是 true
+            - 字符串 --> 布尔值
+                除了空串，其余都是 true
+            - null 和 undefined 都会转换成 false
+        */
+
+        // 1. 数字转换成布尔值
+        var number1 = 123;
+        var bool1 = Boolean(number1);
+        console.log(bool1);  // true
+
+        var number2 = 0;
+        var bool2 = Boolean(number2);
+        console.log(bool2);  // false
+
+        var number3 = NaN;
+        var bool3 = Boolean(number3);
+        console.log(bool3);  // false
+
+        // 2. 字符串转换成布尔值
+        var str1 = '';
+        var bool4 = Boolean(str1);
+        console.log(bool4);  // false
+        
+        var str2 = '   ';
+        var bool5 = Boolean(str2);
+        console.log(bool5);  // true
+        
+        var str3 = 'sad';
+        var bool6 = Boolean(str3);
+        console.log(bool6);  // true
+
+        // 3. 将 null 和 undefined 转换成布尔值
+        var n = null;
+        var bool7 = Boolean(n);
+        console.log(bool7);  // false
+
+        var u = undefined;
+        var bool8 = Boolean(u);
+        console.log(bool8);  // false
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -2,6 +2,8 @@
 * 指将一个数据类型强制转换为其它的数据类型
 * 类型转换主要指，将其它的数据类型，转换为 String、Number、Boolean
 
+
+
 # 1-String(将其它的数据类型转换成字符串)
 ## 方法一：调用转换数据类型的 toString() 方法
 ```js
@@ -14,6 +16,8 @@ console.log(typeof(str));  // string
 var n = null;
 var str = n.toSring();  // 报错
 ```
+
+
 ## 方法二：调用 string() 函数
 * 将转换的数据作为参数传递给函数
 ```js
@@ -23,6 +27,8 @@ console.log(typeof(str));  // string
 ```
 * 对于 Number 和 Boolean 实际上是调用了 toString() 方法
 * 而对于 null 和 undefined，就不会调用 toString() 方法，它会直接将 null 转换为 'null'，将 undefined 转换为 'undefined'
+
+
 
 # 2-Number(将其它数据类型转换成数值)
 ## 方法一：调用 Number() 函数
@@ -46,6 +52,7 @@ var str = '   ';
 var number = Number(str);
 console.log(number);  // 0
 ```
+
 ### 针对布尔值
 1. true --> 1
 ```js
@@ -59,6 +66,7 @@ var bool = false;
 var number = Number(bool);
 console.log(number);  // 0
 ```
+
 ### 针对null和undefined
 1. null --> 0
 ```js
@@ -72,6 +80,8 @@ var u = undefined;
 var number = Number(u);
 console.log(number);  // NaN
 ```
+
+
 ## 方法二：调用 Number() 函数
 * 调用 parseInt() 和 parseFloat() 函数，专门对付字符串
 1. 前者把一个字符串转换为一个整数，可以将一个字符串中有效的整数内容取出来，然后转换为 number
@@ -90,4 +100,33 @@ console.log(parseFloat(str));  // 123.456
 ```js
 var bool = true;
 console.log(parseInt(bool));  // NaN
+```
+
+
+
+# 3-bool(将其它数据类型转换成布尔值)
+* 调用 boolean() 函数
+1. 数字 --> 布尔值
+* 除了 0 和 NaN，其余都是 true
+```js
+var number = 123;
+var bool = Boolean(number);
+console.log(bool);  // true
+```
+2. 字符串 --> 布尔值
+* 除了空串，其余都是 true
+```js
+var str = '';
+var bool = Boolean(str);
+console.log(bool);  // false
+```
+3. null 和 undefined 都会转换成 false
+```js
+var n = null;
+var bool7 = Boolean(n);
+console.log(bool7);  // false
+
+var u = undefined;
+var bool8 = Boolean(u);
+console.log(bool8);  // false
 ```
