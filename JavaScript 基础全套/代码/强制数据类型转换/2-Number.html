@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强制转换为数值</title>
+    <script>
+        /*
+        将其它的数据类型转换为 Number
+        方法一：调用 Number() 函数
+            - 字符串 --> 数字
+                1. 如果是纯数字的字符串，则直接将其转换为数字
+                2. 如果字符串中有非数字的内容，则转换为 NaN
+                3. 如果字符串是一个空串或者是一个全是空格的字符串，则转换为 0
+            - 布尔 --> 数字
+                1. true --> 1
+                2. false --> 0
+            - null --> 0
+            - undefined --> NaN
+
+        方法二：调用 parseInt() 和 parseFloat() 函数，专门对付字符串
+            - 前者把一个字符串转换为一个整数，可以将一个字符串中有效的整数内容取出来，然后转换为 number
+            - 后者把一个字符串转换为一个浮点数，可以将一个字符串中有效的整数和小数内容取出来，然后转换为 number
+            - 特别注意：如果对应非字符串
+                1. 第一步：将非字符串转换成字符串
+                2. 第二步：对转换后的字符串使用 parseInt() 或 parseFloat() 函数
+        */
+
+        // 1. 方法一
+        // 字符串
+        var str1 = '123';
+        var number1 = Number(str1);
+        console.log(typeof(number1))  // number
+
+        var str2 = 'abc';
+        var number2 = Number(str2);
+        console.log(number2)  // NaN
+
+        var str3 = '            ';
+        var number3 = Number(str3);
+        console.log(number3)  // 0
+
+        // 布尔值
+        var bool1 = true;
+        var number4 = Number(bool1);
+        console.log(number4);  // 1
+        var bool2 = false;
+        var number5 = Number(bool2);
+        console.log(number5);  // 0
+
+        // null 和 undefined
+        var n = null;
+        var u = undefined;
+        var number6 = Number(n);
+        console.log(number6);  // 0
+        var number7 = Number(u);
+        console.log(number7);  // NaN
+
+        // 2. 方法二
+        // 字符串
+        var str4 = '123px';
+        var str5 = '123.456px';
+        console.log(parseInt(str4));  // 123
+        console.log(typeof(parseInt(str4)));  // number
+        console.log(parseFloat(str5));  // 123.456
+        console.log(typeof(parseFloat(str5)));  // number
+
+        // 非字符串
+        var bool3 = true;
+        console.log(parseInt(bool3));  // NaN
+    </script>
+</head>
+<body>
+</body>
+</html>

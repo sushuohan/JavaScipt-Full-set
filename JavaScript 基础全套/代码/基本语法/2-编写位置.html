@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 代码编写位置</title>
+    <!-- 1. 可以将 JS 代码编写到外部的 JS 文件中，然后通过 script 标签引入 -->
+    <script src="../JS/scipt.js"></script>
+    <!-- 2. 可以直接在 script 标签中编写 JS 代码 -->
+    <script>
+        alert('我是内部的 JS 代码！');
+    </script>
+</head>
+<body>
+    <!-- 3. 可以将 JS 代码编写到某些标签的某些属性当中 -->
+    <!-- 可以将 JS 代码编写到 button 标签的 onclick 属性中 -->
+    <button onclick="alert('让你点就点！！！')">点我一下！</button>
+    <!-- 可以将 JS 代码编写到 a 标签的 href 属性中 -->
+    <a href="javascript:console.log('你是小猪猪');">你猜你自己是什么</a>
+</body>
+</html>
