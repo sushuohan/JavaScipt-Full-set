@@ -82,7 +82,7 @@ console.log(number);  // NaN
 ```
 
 
-## 方法二：调用 Number() 函数
+## 方法二：调用 parseInt() 和 parseFloat() 函数
 * 调用 parseInt() 和 parseFloat() 函数，专门对付字符串
 1. 前者把一个字符串转换为一个整数，可以将一个字符串中有效的整数内容取出来，然后转换为 number
 ```js
