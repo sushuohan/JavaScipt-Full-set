@@ -3,7 +3,7 @@
 1. 比如：typeof 运算符可以获得一个值的类型，它会将该值的类型以字符串的形式返回
 ```js
 var str = typeof('110');
-console.log(str);  // string
+console.log(str);  // 'string'
 ```
 2. 优先级问题(不需要记忆)
 

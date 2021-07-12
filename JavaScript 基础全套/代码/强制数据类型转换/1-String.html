@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,14 +17,14 @@
         */
 
         // 1. 方法一
-        var number1 = 123;  // 数值
+        var number1 = 123; // 数值
         var str1 = number1.toString();
-        console.log(typeof(number1));  // 原变量 - 数值
-        console.log(typeof(str1));  // 新变量 - 字符串
+        console.log(typeof (number1)); // 原变量 - 数值
+        console.log(typeof (str1)); // 新变量 - 字符串
 
-        var bool = true;  // 布尔值
-        var str2 = bool.toString();  // 原变量 - 布尔值
-        console.log(str2);  // 新变量 - 字符串
+        var bool = true; // 布尔值
+        var str2 = bool.toString(); // 原变量 - 布尔值
+        console.log(str2); // 新变量 - 字符串
 
         // 特别注意：null 和 undefined 没有 toString 方法
         var n = null;
@@ -34,14 +35,16 @@
         // 2. 方法二
         var number2 = 456;
         var str3 = String(number2);
-        console.log(typeof(str3));  // string
+        console.log(typeof (str3)); // string
 
         var str4 = String(n);
         var str5 = String(u);
-        console.log(typeof(str4));  // string
-        console.log(typeof(str5));  // string
+        console.log(typeof (str4)); // string
+        console.log(typeof (str5)); // string
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

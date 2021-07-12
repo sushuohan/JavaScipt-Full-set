@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
                 3. 如果字符串是一个空串或者是一个全是空格的字符串，则转换为 0
             - 布尔 --> 数字
                 1. true --> 1
+                
                 2. false --> 0
             - null --> 0
             - undefined --> NaN
@@ -31,46 +33,48 @@
         // 字符串
         var str1 = '123';
         var number1 = Number(str1);
-        console.log(typeof(number1))  // number
+        console.log(typeof (number1)) // number
 
         var str2 = 'abc';
         var number2 = Number(str2);
-        console.log(number2)  // NaN
+        console.log(number2) // NaN
 
         var str3 = '            ';
         var number3 = Number(str3);
-        console.log(number3)  // 0
+        console.log(number3) // 0
 
         // 布尔值
         var bool1 = true;
         var number4 = Number(bool1);
-        console.log(number4);  // 1
+        console.log(number4); // 1
         var bool2 = false;
         var number5 = Number(bool2);
-        console.log(number5);  // 0
+        console.log(number5); // 0
 
         // null 和 undefined
         var n = null;
         var u = undefined;
         var number6 = Number(n);
-        console.log(number6);  // 0
+        console.log(number6); // 0
         var number7 = Number(u);
-        console.log(number7);  // NaN
+        console.log(number7); // NaN
 
         // 2. 方法二
         // 字符串
         var str4 = '123px';
         var str5 = '123.456px';
-        console.log(parseInt(str4));  // 123
-        console.log(typeof(parseInt(str4)));  // number
-        console.log(parseFloat(str5));  // 123.456
-        console.log(typeof(parseFloat(str5)));  // number
+        console.log(parseInt(str4)); // 123
+        console.log(typeof (parseInt(str4))); // number
+        console.log(parseFloat(str5)); // 123.456
+        console.log(typeof (parseFloat(str5))); // number
 
         // 非字符串
         var bool3 = true;
-        console.log(parseInt(bool3));  // NaN
+        console.log(parseInt(bool3)); // NaN
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

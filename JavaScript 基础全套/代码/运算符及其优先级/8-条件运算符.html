@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,22 +18,27 @@
         */
 
         // 1. 简单使用
-        true?console.log('语句一'):console.log('语句二');  // '语句一'
-        false?console.log('语句一'):console.log('语句二');  // '语句二'
-        '123'?console.log('语句一'):console.log('语句二');  // '语句一'
-        ''?console.log('语句一'):console.log('语句二');  // '语句二'
+        true ? console.log('语句一') : console.log('语句二'); // '语句一'
+        false ? console.log('语句一') : console.log('语句二'); // '语句二'
+        '123' ? console.log('语句一'): console.log('语句二'); // '语句一'
+        '' ? console.log('语句一'): console.log('语句二'); // '语句二'
 
         // 2. 求 a 和 b 的最大值
-        var a = 7, b = 5;
-        var max = a > b?a:b;
-        console.log('max=' + max);  // 'max=7'
+        var a = 7,
+            b = 5;
+        var max = a > b ? a : b;
+        console.log('max=' + max); // 'max=7'
 
         // 3. 求 a 和 b 和 c 的最大值
-        var a = 7, b = 5, c = 100;
-        var max1 = a > b?(a > c?a:c):(b > c?b:c);
-        console.log('max=' + max1);  // 'max=100'
+        var a = 7,
+            b = 5,
+            c = 100;
+        var max1 = a > b ? (a > c ? a : c) : (b > c ? b : c);
+        console.log('max=' + max1); // 'max=100'
     </script>
 </head>
-<body>    
+
+<body>
 </body>
+
 </html>

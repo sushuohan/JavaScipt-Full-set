@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,25 +17,25 @@
         */
 
         // 1. typeof 运算符
-        var result1 = typeof(1314);
-        console.log(result1);  // number
+        var result1 = typeof (1314);
+        console.log(result1); // number
 
         // 2. 算术运算符的规范
         // Number
         var result2 = 123 + 456;
-        console.log(result2);  // 579
+        console.log(result2); // 579
         // bool
-        var result3 = true + true;  // 将 true 转换为 1
-        console.log(result3);  // 2
+        var result3 = true + true; // 将 true 转换为 1
+        console.log(result3); // 2
         // bool + null
-        var result4 = false + null;  // 将 false 转换为 0，将 null 转换为 0
-        console.log(result4);  // 1
+        var result4 = false + null; // 将 false 转换为 0，将 null 转换为 0
+        console.log(result4); // 1
         // Number + undefined
-        var result5 = undefined + 1;  // undefined 进行运算
-        console.log(result5);  // NaN
+        var result5 = undefined + 1; // undefined 进行运算
+        console.log(result5); // NaN
         // undefined 转换为 Number 后为 NaN
         var result6 = Number(undefined);
-        console.log(result6);  // NaN
+        console.log(result6); // NaN
 
         /*
         + 可以对两个值进行加法运算，并将结果返回
@@ -44,24 +45,24 @@
         */
         // 3. 算术运算符(+) --> 字符串
         var str1 = '123' + '456';
-        console.log(str1);  // '123456'
+        console.log(str1); // '123456'
         var str2 = '123' + 1314;
-        console.log(str2);  // '1231314'
+        console.log(str2); // '1231314'
         var str3 = '123' + true;
-        console.log(str3);  // '123true'
+        console.log(str3); // '123true'
         var str4 = '123' + null;
-        console.log(str4);  // '123null'
+        console.log(str4); // '123null'
         // 隐式转换(number --> string)
         var number1 = 990;
         var str5 = number1 + '';
-        console.log(typeof(str5));  // string
+        console.log(typeof (str5)); // string
         // String() 方法转换
         var number2 = 770;
         var str6 = String(number2);
-        console.log(typeof(str6));  // string
+        console.log(typeof (str6)); // string
         // 拼串的运算顺序(从左到右)
-        console.log('1' + 2 + 3);  // '123'
-        console.log(1 + 2 + '3');  // '33'
+        console.log('1' + 2 + 3); // '123'
+        console.log(1 + 2 + '3'); // '33'
 
         /*
         以下运算符，都会将数据先转换为 number
@@ -71,30 +72,32 @@
         % 可以对二个值进行取模运算(取余数)，并将结果返回
             - 任何值做以上运算时都会自动转换为 Number，可以利用这一特点进行隐式类型转换(实际调用 Number() 方法)
         */
-        
+
         // 3. 算术运算符(-,*,/,%) --> 数值
         var str7 = '123';
         var number3 = str7 - '110';
-        console.log(number3);  // 13
+        console.log(number3); // 13
 
         var str8 = '110';
         var number4 = str8 * '10';
-        console.log(number4);  // 1100
+        console.log(number4); // 1100
 
         var str9 = '77';
         var number5 = str9 / '11';
-        console.log(number5);  // 7
+        console.log(number5); // 7
 
         var str10 = '10';
         var number6 = str10 % '3';
-        console.log(number6);  // 1
+        console.log(number6); // 1
 
         // 隐式转换(string --> number)
         var str11 = '123';
         var number7 = str11 - 0;
-        console.log(typeof(number7));  // number
+        console.log(typeof (number7)); // number
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

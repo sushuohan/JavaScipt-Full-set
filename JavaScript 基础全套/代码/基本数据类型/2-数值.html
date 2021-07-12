@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,27 +15,27 @@
         */
 
         // 字符串和数值的比较
-        var str = '123';  // 字符串类型
-        var number = 123;  // 数值类型
-        console.log(str + '***' + typeof(str));
-        console.log(number + '***' + typeof(number));
+        var str = '123'; // 字符串类型
+        var number = 123; // 数值类型
+        console.log(str + '***' + typeof (str));
+        console.log(number + '***' + typeof (number));
 
         // 错误示范
         // var number1 = 123.456.789  // 数值为小数时仅限一个小数点
         // var number2 = 123，456  // 数值为整数时不能使用小数点或者逗号
 
         // 最大数值和最小数值
-        console.log(Number.MAX_VALUE)  // 1.7976931348623157e+308
-        console.log(Number.MIN_VALUE)  // 5e-324
+        console.log(Number.MAX_VALUE) // 1.7976931348623157e+308
+        console.log(Number.MIN_VALUE) // 5e-324
 
         // 正无穷和负无穷
-        console.log(Number.MAX_VALUE * Number.MAX_VALUE)  // Infinity
-        console.log(-Number.MAX_VALUE * Number.MAX_VALUE)  // -Infinity
+        console.log(Number.MAX_VALUE * Number.MAX_VALUE) // Infinity
+        console.log(-Number.MAX_VALUE * Number.MAX_VALUE) // -Infinity
 
         // NaN 
         var number3 = 'abc' * 'def';
-        console.log(number3);  // NaN
-        console.log(typeof(number3));  // number 
+        console.log(number3); // NaN
+        console.log(typeof (number3)); // number 
 
         // 运算
         // 在 JS 中整数的运算基本可以保证精确
@@ -45,6 +46,8 @@
         console.log(b);
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

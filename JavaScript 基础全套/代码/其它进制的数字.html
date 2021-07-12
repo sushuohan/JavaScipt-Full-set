@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,22 +14,24 @@
         */
 
         var number1 = 0xff;
-        console.log(number1);  // 255
+        console.log(number1); // 255
 
         var number2 = 077;
-        console.log(number2);  // 63
+        console.log(number2); // 63
 
         var number3 = 0b111111;
-        console.log(number3);  // 63
+        console.log(number3); // 63
 
         // 需要注意的是像 077 这种数据，有些浏览器会当成 8 进制解析，有些会当成 10 进制解析，我们利用如下方法
         var str = '070';
         var number4 = parseInt(str, 10);
         var number5 = parseInt(str, 8);
-        console.log(number4);  // 70
-        console.log(number5);  // 56
+        console.log(number4); // 70
+        console.log(number5); // 56
     </script>
 </head>
+
 <body>
 </body>
+
 </html>

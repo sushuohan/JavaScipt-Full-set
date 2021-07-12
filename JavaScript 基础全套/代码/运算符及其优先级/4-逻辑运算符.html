@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,37 +31,37 @@
 
         // 1. 非运算
         var bool = true;
-        console.log(!bool);  // false
+        console.log(!bool); // false
 
         var str = '123';
-        console.log(!!str);  // true
+        console.log(!!str); // true
 
         var u = undefined;
-        console.log(!!u);  // false
+        console.log(!!u); // false
 
         var n = null;
-        console.log(!!n);  // false
+        console.log(!!n); // false
 
         var number = NaN;
-        console.log(!!number);  // false
+        console.log(!!number); // false
 
         // 2. 与运算
         var bool1 = true && true;
         var bool2 = false && true;
-        console.log(bool1);  // true
-        console.log(bool2);  // false
+        console.log(bool1); // true
+        console.log(bool2); // false
         // 判断 && 的运算范围
-        true && console.log('1');  // '1'
-        false && console.log('1');  // 
+        true && console.log('1'); // '1'
+        false && console.log('1'); // 
 
         // 3. 或运算
         var bool3 = false || false
         var bool4 = false || true;
-        console.log(bool3);  // false
-        console.log(bool4);  // true
+        console.log(bool3); // false
+        console.log(bool4); // true
         // 判断 || 的运算范围
-        true || console.log('2');  // 
-        false || console.log('2');  // '2'
+        true || console.log('2'); // 
+        false || console.log('2'); // '2'
 
         /* 第二个多行注释
         &&(与) 和 ||(或)
@@ -77,25 +78,27 @@
 
         // 1. 与运算
         var number1 = 1 && 2;
-        console.log(number1);  // 2
-        
+        console.log(number1); // 2
+
         var number2 = NaN && 1;
-        console.log(number2);  // NaN
+        console.log(number2); // NaN
 
         var number3 = 3 && undefined;
-        console.log(number3);  // undefined
+        console.log(number3); // undefined
 
         // 2. 或运算
         var number4 = 1 || 2;
-        console.log(number4);  // 1
-        
+        console.log(number4); // 1
+
         var number5 = null || 2;
-        console.log(number5);  // 2
+        console.log(number5); // 2
 
         var number6 = 3 || 0;
-        console.log(number6);  // 3
+        console.log(number6); // 3
     </script>
 </head>
+
 <body>
 </body>
+
 </html>
