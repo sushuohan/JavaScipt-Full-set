@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加删除记录</title>
+    <script>
+        function delA() {
+            // 1. 实现 Delete 功能
+            var aArr = document.getElementsByTagName('a');
+            for (var i = 0; i < aArr.length; i++) {
+                /*
+                for 循环会在页面加载完成之后立即执行
+                    而响应函数会在超链接被点击时才执行
+                    当响应函数被执行时，for 循环早已执行完毕
+                */
+                aArr[i].onclick = function () {
+                    // 找到 tr 对象
+                    var tr = this.parentNode.parentNode;
+                    // 删除前提示用户是否真的删除
+                    var flag = confirm('您真的要删除' + tr.childNodes[1].innerHTML)
+                    if (flag) {
+                        // 删除 tr 对象
+                        tr.parentNode.removeChild(tr);
+                    } else {
+                        alert('删除失败')
+                    }
+
+                    return false; // 阻止浏览器跳转这种默认行为
+
+                }
+            }
+
+        }
+        window.onload = function () {
+            // 1. Delete
+            delA();
+
+            // 2. 第一种提交方法：实现添加员工的功能
+            var btn1 = document.getElementById('addEmpButton1');
+            btn1.onclick = function () {
+                // 获取用户添加的用户信息
+                var name = document.getElementById('empName').value;
+                var email = document.getElementById('email').value;
+                var salary = document.getElementById('salary').value;
+                if (!(name && email && salary)) {
+                    alert('添加错误！');
+                } else {
+                    // 增添 HTML 代码
+                    // <tr>
+                    //     <td>Tom</td>
+                    //     <td>tom@tom.com</td>
+                    //     <td>5000</td>
+                    //     <td><a href="deleteEmp?id=001">Delete</a></td>
+                    // </tr>
+                    // 创建一个 tr 标签
+                    var tr = document.createElement('tr');
+                    // 创建四个 td
+                    var nameTd = document.createElement('td');
+                    var emailTd = document.createElement('td');
+                    var salaryTd = document.createElement('td');
+                    var aTd = document.createElement('td');
+                    // 创建一个 a 元素
+                    var a = document.createElement('a');
+                    // 创建文本节点
+                    var nameText = document.createTextNode(name);
+                    var emailText = document.createTextNode(email);
+                    var salaryText = document.createTextNode(salary);
+                    var deleteText = document.createTextNode('Delete');
+                    // 添加子节点 deleteText 到 a 节点中
+                    a.appendChild(deleteText);
+                    // 添加子节点 a 到 aTd 节点中
+                    aTd.appendChild(a);
+                    // 将其余文本节点添加到元素节点中
+                    nameTd.appendChild(nameText);
+                    emailTd.appendChild(emailText);
+                    salaryTd.appendChild(salaryText);
+                    // 向 a 中添加属性值
+                    a.href = 'javascript:;';
+                    // 为新增的 a 再绑定一次点击函数
+                    a.onclick = delA;
+                    // 将 td 添加到 tr 上(注意顺序)
+                    tr.appendChild(nameTd);
+                    tr.appendChild(emailTd);
+                    tr.appendChild(salaryTd);
+                    tr.appendChild(aTd);
+                    // 获取 table
+                    var table = document.getElementById('table');
+                    // 获取 table 中的 tbody
+                    var tbody = table.getElementsByTagName('tbody')[0];
+                    // 将 tr 节点增添到 tbody 中
+                    tbody.appendChild(tr);
+                    // 提交后将三个输入框值置为空
+                    document.getElementById('empName').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('salary').value = '';
+                }
+            }
+
+            // 3. 第二种提交方法：实现添加员工的功能
+            var btn2 = document.getElementById('addEmpButton2');
+            btn2.onclick = function () {
+                // 获取用户添加的用户信息
+                var name = document.getElementById('empName').value;
+                var email = document.getElementById('email').value;
+                var salary = document.getElementById('salary').value;
+                if (!(name && email && salary)) {
+                    alert('添加错误！');
+                } else {
+                    // 创建一个 tr
+                    var tr = document.createElement('tr');
+                    // 设置 tr 中的内容
+                    tr.innerHTML = '<td>' + name + "</td>" +
+                        '<td>' + email + "</td>" +
+                        '<td>' + salary + "</td>" +
+                        "<td><a href='javascript:;'>Delete</a></td>";
+                    var a = tr.getElementsByTagName('a')[0];
+                    a.onclick = delA;
+                    // 获取 table
+                    var table = document.getElementById('table');
+                    // 获取 table 中的 tbody
+                    var tbody = table.getElementsByTagName('tbody')[0];
+                    // 将 tr 节点增添到 tbody 中
+                    tbody.appendChild(tr);
+                    // 提交后将三个输入框值置为空
+                    document.getElementById('empName').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('salary').value = '';
+                }
+            }
+
+        }
+    </script>
+    <style>
+        #outer1 {
+            width: 280px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: rgb(157, 255, 0);
+            /* 设置文本居中 */
+            text-align: center;
+        }
+
+        #table {
+            border: chartreuse 1px solid;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table id='table' border="1px">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td>Tom</td>
+                <td>tom@tom.com</td>
+                <td>5000</td>
+                <td><a href="deleteEmp?id=001">Delete</a></td>
+            </tr>
+            <tr>
+                <td>Jerry</td>
+                <td>jerry@jerry.com</td>
+                <td>8000</td>
+                <td><a href="deleteEmp?id=002">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id='outer1'>
+        <h4>添加新员工</h4>
+        <table>
+            <tr>
+                <td class="word">name:</td>
+                <td class="inp">
+                    <input type="text" name="empName" id="empName">
+                </td>
+            </tr>
+            <tr>
+                <td class="word">email:</td>
+                <td class="inp">
+                    <input type="text" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td class="word">salary:</td>
+                <td class="inp">
+                    <input type="text" name="salary" id="salary">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button id="addEmpButton1" value="abc">Submit1</button>
+                    <button id="addEmpButton2" value="abc">Submit2</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

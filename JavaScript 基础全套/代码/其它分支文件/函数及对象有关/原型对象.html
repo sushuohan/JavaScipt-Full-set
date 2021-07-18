@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型对象</title>
+    <script>
+        /*
+        原型 prototype
+            - 我们所创建的每一个函数，解析器都会向函数中添加一个属性 prototype
+            - 这个属性对应着一个对象，这个对象就是我们所谓的原型对象
+            1. 如果函数作为普通函数调用 prototype 则没有任何作用
+            2. 当函数以构造函数的形式调用时，它所创建的对象中都会有一个隐含的属性指向该构造函数的原型对象
+                我们可以用 __proto__ 来访问该属性
+            3. 原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象
+                我们可以将对象中共有的内容设置到原型对象中
+            4. 当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用
+                如果没有则会去原型对象中寻找，如果找到则直接使用
+        */
+
+        // 1. 原型对象的使用
+        function MyClass() {
+
+        }
+        //向 MyClass 函数的原型对象中添加属性 a
+        MyClass.prototype.a = 123;
+
+        MyClass.prototype.sayA = function () {
+            console.log(this.a);
+        }
+
+        var mc = new MyClass(); // 实例化对象 mc
+
+        console.log(mc.a); // 123
+
+        mc.a = 111; // 为 mc 对象添加属性 a
+
+        console.log(mc.a); // 111
+
+        mc.sayA(); // 111
+
+        console.log(mc.__proto__ == MyClass.prototype); // true
+
+        // 2. 原型对象属性的检查
+
+        // 使用 in 检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回 true
+        function fun() {
+
+        }
+
+        var fun1 = new fun();
+
+        fun.prototype.name = 'sasa';
+
+        console.log('name' in fun1); // true
+
+        // 可以使用对象的 hasOwnProperty() 来检查对象自身是否含有该属性
+        fun1.age = 18;
+
+        console.log(fun1.hasOwnProperty('name')); // false
+
+        console.log(fun1.hasOwnProperty('age')); // true
+
+        // 我们使用了 fun1 对象的 hasOwnProperty 方法，那么我们来检查此方法属于哪个对象
+        console.log(fun1.hasOwnProperty('hasOwnProperty')); // false -- 不属于对象
+        console.log(fun1.__proto__.hasOwnProperty('hasOwnProperty')); // false -- 不属于原型对象
+        console.log(fun1.__proto__.__proto__.hasOwnProperty('hasOwnProperty')); // true -- 属于原型对象的原型对象
+        /*
+        原型对象也是对象，所以也有原型
+            - 当我们使用一个对象的属性或方法时，会先在自身中寻找
+                1. 自身中如果有则直接使用
+                2. 如果没有则去原型对象中寻找，如果原型对象中有，则使用
+                3. 如果没有则去原型的原型中寻找，直到找到 Object 对象的原型
+                4. Object 对象的原型没有原型，如果在 Object 中仍然找不到，则返回 undefined
+        */
+        console.log(fun.prototype.hasOwnProperty('hasOwnProperty')); // false
+        console.log(fun.prototype.__proto__.hasOwnProperty('hasOwnProperty')); // true
+        console.log(fun.prototype.__proto__ == fun1.__proto__.__proto__); // true
+
+        // 找不到属性值返回 undefined
+        console.log(fun1.aaa); // undefined
+
+        // 找不到原型对象返回 null
+        console.log(fun1.__proto__.__proto__.__proto__); // null
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

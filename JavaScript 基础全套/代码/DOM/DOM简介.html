@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 简介</title>
+    <script>
+        // 浏览器语句为我们提供了文档节点，可以在页面中直接使用，文档节点就是整个网页
+        window.onload = function () {
+            // 获取对象
+            var btn = document.getElementById('btn');
+            // 创建点击事件
+            btn.onclick = function(){
+                console.log('你再点一次试试看！！！');
+            }
+            // 修改按钮的文字
+            btn.innerHTML = '我是按钮';
+        }
+    </script>
+</head>
+
+<body>
+    <button id='btn'>点我试试看！</button>
+</body>
+
+</html>

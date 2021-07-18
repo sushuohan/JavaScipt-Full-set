@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作内联样式</title>
+    <script>
+        function getStyle(obj, name){
+            if(window.getComputedStyle){ // 查找 window 是否含有该属性 -- 不含有则返回 undefined
+                // 正常浏览器的方式，具有 getComputedStyle() 方法
+                return getComputedStyle(obj, null)[name];
+            }else{
+                // IE8 的方式，没有 getComputedStyle() 方法
+                return obj.currentStyle[name];
+            }
+        }
+
+        window.onload = function(){
+            var div = document.getElementById('box');
+            var btn1 = document.getElementById('btn1')
+            // 1. 按钮1点击函数用于修改 box 的大小
+            btn1.onclick = function(){
+                // 通过 JS 修改元素的样式 -- 语法：元素.style.样式名 = 样式值;
+                // 注意：如果 CSS 的样式名中含有 -
+                // 需要将这种样式名修改为驼峰命名法
+                div.style.width = '300px';
+                div.style.height = '300px';
+                // 我们通过 style 属性设置的样式都是内联样式
+                // 内联样式有较高的优先级，所以通过 JS 修改的样式往往会立即显示
+                div.style.backgroundColor = 'red'
+                // 如果我们在样式中写了 !important，则此时样式会有最高的优先级
+                // 即使通过 JS 也不能覆盖该样式，此时会导致 JS 修改样式失效
+            }
+
+            var btn2 = document.getElementById('btn2');
+            // 2. 按钮2点击函数用于输出 box 的内联样式属性
+            btn2.onclick = function(){
+                // 下列三个语句只能输出 id 为 box 的标签的内联属性 
+                console.log('盒子高为：' + div.style.height);
+                console.log('盒子宽为：' + div.style.width);
+                console.log('盒子颜色为：' + div.style.backgroundColor);
+            }
+
+            var btn3 = document.getElementById('btn3');
+            // 3. 按钮3点击函数用于 IE8 输出 box 的样式属性
+            btn3.onclick = function(){
+                // 获取元素显示的样式
+                // 语法：元素.currentStyle.样式名 -- 如果当前元素没有设置该样式则读取默认值
+                // 注意：只有 IE 浏览器支持，其它的浏览器不支持
+                console.log('盒子高为：' + div.currentStyle.height);
+                console.log('盒子宽为：' + div.currentStyle.width);
+                console.log('盒子颜色为：' + div.currentStyle.backgroundColor);
+            }
+            
+            var btn4 = document.getElementById('btn4');
+            // 4. 按钮4点击函数用于其它浏览器输出 box 的样式属性
+            btn4.onclick = function(){
+                // 在其它浏览器中可以使用 getComputedStyle() 
+                // 这个方法用来获取元素当前的样式(这个方法是 window 的方法 -- 可以直接使用)
+                // 二个参数：第一个是要获取样式的元素，第二个可以传递一个伪元素，一般是 null
+                // 返回值：一个对象，其中封装了当前元素对应的样式
+                var obj = getComputedStyle(div, null);
+                console.log('盒子高为：' + obj.height);
+                console.log('盒子宽为：' + obj.width);
+                console.log('盒子颜色为：' + obj.backgroundColor);
+            }
+
+            var btn5 = document.getElementById('btn5');
+            // 5. 按钮5点击函数用于所有浏览器输出 box 的样式属性
+            btn5.onclick = function(){
+                console.log('盒子高为：' + getStyle(div, 'height'));
+                console.log('盒子宽为：' + getStyle(div, 'width'));
+                console.log('盒子颜色为：' + getStyle(div, 'backgroundColor'));
+            }
+        }
+    </script>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: chartreuse !important;
+            color: rgb(192, 58, 197);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">我是猪</div>
+    <button id="btn1">修改盒子的大小</button>
+    <button id='btn2'>输出 box 的内联属性</button>
+    <button id='btn3'>IE8 浏览器输出 box 的样式属性</button>
+    <button id='btn4'>其它浏览器输出 box 的样式属性</button>
+    <button id="btn5">浏览器兼容输出 box 的样式属性</button>
+</body>
+
+</html>

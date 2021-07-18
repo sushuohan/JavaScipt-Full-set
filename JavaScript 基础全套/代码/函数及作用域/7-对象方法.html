@@ -33,8 +33,11 @@
                 2. 每次执行时会将对象中的一个属性的名字赋值给变量
         */
 
+        // for (var i in obj) {
+        //     console.log(obj[i]);  // i 是一个字符串
+        // }
         for (var i in obj) {
-            console.log(obj[i]);  // i 是一个字符串
+            console.log(i + ':' + obj[i]);
         }
     </script>
 </head>

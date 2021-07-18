@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date 对象</title>
+    <script>
+        /*
+        Date 对象
+            - 在 JS 中使用 Date 对象来表示一个时间
+        */
+
+        // 1. 创建一个 Date 对象
+        // 如果直接使用构造函数创建一个 Date 对象，则会封装为当前代码执行的时间
+        var d = new Date();
+        console.log(d); // Fri Jul 16 2021 13:36:14 GMT+0800 (GMT+08:00)
+
+        // 创建一个指定时间的 Date 对象
+        // 需要在构造函数中传递一个表示时间的字符串作为参数
+        // 日期的格式：月份/日期/年份 时:分:秒
+        var d1 = new Date('5/11/02 11:11:11');
+        console.log(d1); // Sat May 11 2002 11:11:11 GMT+0800 (GMT+08:00)
+
+        // 2. 获取当前 Date 对象的日期 -- getDate()
+        var date = d1.getDate();
+        console.log(date); // 11
+        // 3. 获取当前 Date 对象的星期 -- getDay()
+        // 会返回 0-6 && 0 代表星期天
+        var day = d1.getDay();
+        console.log(day); // 6
+        // 4. 获取当前 Date 对象的月份 -- getMonth()
+        // 会返回 0-11 && 0 代表 1月份
+        var month = d1.getMonth();
+        console.log(month); // 4 && 代表 5月份
+        // 5. 获取当前 Date 对象的年份 -- getYear()
+        var year = d1.getFullYear();
+        console.log(year); // 2002
+
+        // 6. 获取当前 Date 对象的时间戳
+        // 指的是从格林威治标准时间 1970年1月1日 0时0分0秒 到当前日期所花费的毫秒数
+        // 计算机底层保存时间都是时间戳
+        var time = d1.getTime();
+        console.log(time); // 1021086671000
+        console.log(time / 1000 / 60 / 60 / 24 / 365); // 32.378445934804674
+
+        var d2 = new Date('1/1/1970 0:0:0'); // 此处代表的是北京标准时间
+        var time1 = d2.getTime();
+        console.log(time1 / 1000 / 60 / 60 / 24 / 365); // -0.0009132420091324201
+
+        // 7. 使用时间戳来校验代码的执行效率
+        // 开始
+        var timeOn = Date.now();
+        // 代码区
+        var num = 0;
+        for (var i = 0; i < 100000; i++) {
+            num += i;
+        }
+        console.log(num);
+        // 结束
+        var timeEnd = Date.now();
+        console.log((timeEnd - timeOn) + 'ms'); // 5ms
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

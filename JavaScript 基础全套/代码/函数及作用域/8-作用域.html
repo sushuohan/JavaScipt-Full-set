@@ -49,6 +49,7 @@
             var a1 = 100;
         }
         // console.log(a1);  //  a1 is not defined
+
         // 函数内变量覆盖全局变量
         // 函数内没有声明 var c，于是修改了上一级(全局)的变量 c
         var c = 10;
@@ -58,6 +59,7 @@
             console.log(c); // 100
         }
         console.log(c); // 100
+
         // 全局仍没有函数内的待执行变量
         // function fun3() {
         //     function fun4() {
@@ -66,6 +68,16 @@
         //     fun4();
         // }
         // fun3();  // 报错 -- t is not defined
+
+        // 函数传参
+        var e = 77;
+
+        function fun5(e) {
+            // 相当于在函数内声明了 var e
+            console.log(e);
+        }
+        fun5(); // undefined
+        fun5(e); // 77
     </script>
 </head>
 

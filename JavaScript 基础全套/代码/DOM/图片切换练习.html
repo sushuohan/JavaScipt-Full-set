@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片切换练习</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: aqua;
+            /* 设置文本居中 */
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 获取文本为上一张的按钮节点
+            var btn1 = document.getElementById('prev');
+            // 获取文本为下一张的按钮节点
+            var btn2 = document.getElementById('next');
+            // 获取图片节点
+            var image = document.getElementsByTagName('img')[0];
+            // 获取上方 p 标签节点
+            var p = document.getElementById('info');
+            // 将所有需要显示的图片放入一个数组中并保存起来
+            imageArr = ['./images/1.jpg', './images/2.jpg', './images/3.jpg', './images/4.jpg', './images/5.jpg']
+            // 设置当前图片索引项
+            var index = 0;
+            // 设置当前 p 标签文本显示
+            p.innerHTML = '一共有' + imageArr.length + '张图片，当前是第' + (index + 1) + '张';
+
+            // 按钮1功能：切换为上一张照片，p 标签也会做出相应的改变
+            btn1.onclick = function () {
+                index--;
+
+                if (index < 0) {
+                    index = imageArr.length - 1
+                }
+
+                image.src = imageArr[index];
+                // 点击按钮后重新设置当前 p 标签文本显示
+                p.innerHTML = '一共有' + imageArr.length + '张图片，当前是第' + (index + 1) + '张';
+            }
+
+            // 按钮2功能：切换为下一张照片，p 标签也会做出相应的改变
+            btn2.onclick = function () {
+                index++;
+
+                if (index == 5) {
+                    index = 0;
+                }
+
+                image.src = imageArr[index];
+                // 点击按钮后重新设置当前 p 标签文本显示
+                p.innerHTML = '一共有' + imageArr.length + '张图片，当前是第' + (index + 1) + '张';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <p id="info"></p>
+        <img src="./images/1.jpg" alt="没了没了">
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+</body>
+
+</html>

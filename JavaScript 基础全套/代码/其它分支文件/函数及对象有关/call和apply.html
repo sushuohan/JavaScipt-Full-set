@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call and apply</title>
+    <script>
+        /*
+        call() 和 apply()
+            - 这两个方法都是函数对象的方法，需要通过函数对象来调用
+            - 当对函数调用 call() 和 apply() 都会调用函数执行
+            - 在调用 call 和 apply 时可以将一个将一个对象指定为第一个参数
+                1. 这个对象会成为函数执行的 this
+            - call 方法可以将实参在对象之后依次传递
+            - apply 方法需要将实参封装到一个数组中统一传递
+        */
+        function fun() {
+            console.log('我是 fun 函数');
+        }
+
+        fun.apply(); // '我是 fun 函数'
+        fun.call(); // '我是 fun 函数'
+        fun(); // '我是 fun 函数'
+
+        // 1. 传递对象作为参数
+        var obj = {};
+
+        function fun1() {
+            console.log(this)
+        }
+
+        fun1(); // Window 对象
+        fun1.apply(obj); // obj 对象
+
+        var obj2 = {
+            name: 'xiaosu',
+            sayName:function(){
+                console.log(this.name)
+            }
+        }
+
+        function fun2() {
+            console.log(this.name);
+        }
+
+        fun2.apply(obj2); // 'xiaosu'
+        
+        // 二种方法一样
+        obj2.sayName(); // 'xiaosu'
+        obj2.sayName.apply(obj2);  // 'xiaosu'
+
+        // 2. 在对象之后传递实参
+        obj3 = {
+            name:'su'
+        }
+        function fun3(a, b){
+            console.log(a + b);
+            console.log(this.name);
+        }
+
+        fun3.call(obj3, 1, 2); // 3 -- su
+        var arr = [3, 100];
+        fun3.apply(obj3, arr); // 103 -- su
+
+        /*
+        4. 再次总结 this 
+            - 以函数形式调用时，this 永远都是 window
+            - 以方法的形式调用时，this 是调用方法的那个对象
+            - 以构造函数的形式调用时，this 是新创建的那个对象
+            - 使用 call 和 apply 调用时，this 是指定的那个对象
+        */ 
+    
+        // 以函数形式
+        window.a = 100;
+        function fun4(){
+            console.log(this.a);
+        }
+        fun4(); // 100
+
+        // 以方法形式
+        var obj4 = {
+            name:'su',
+            sayName:function(){
+                console.log(this.name);
+            }
+        }
+        obj4.sayName(); // 'su'
+
+        // 以构造函数形式
+        function fun5(){
+            this.name = 'xiaosu';
+        }
+        var f = new fun5();
+        console.log(f.name); // 'xiaosu'
+
+        
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

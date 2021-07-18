@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器</title>
+    <script>
+        /*
+        计时器语法：
+            console.time('计时器名字') 同时也表示了计时的开始
+            console.timeEnd('计时器名字') 同时也表示了计时的结束
+            结果是在控制台输出一段字符串，格式为计时器名字：时间
+        */
+        console.time('xunhuan10000ci');
+
+        for (var i = 1; i < 10000; i += 1) {
+            document.write(i);
+        }
+
+        console.timeEnd('xunhuan10000ci')  // xunhuan10000ci: 17.0048828125 ms
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

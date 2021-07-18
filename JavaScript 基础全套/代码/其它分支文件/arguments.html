@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments</title>
+    <script>
+        /*
+        在调用函数时，浏览器每次都会传递二个隐含的参数
+            1. 函数的上下文对象 this
+            2. 封装实参的对象 arguments
+                - arguments 是一个类对象数组，也可以通过索引来取值，也可以获取长度
+                - 在调用函数时，我们所传递的实参都会封装到 arguments 中
+                - 它有一个属性 callee 指向当前封装的函数
+
+        */
+
+        // 1. arguments 不是一个数组对象
+        function fun() {
+            console.log(arguments instanceof Array); // false
+            console.log(Array.isArray(arguments)); // false
+        }
+        fun(); 
+
+        // 2. 传递实参
+        function fun1(a, b, c) { // 此处写不写形参都不会对 arguments 中存放的参数造成影响
+            console.log(arguments.length); // 3
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]); // 1 -- 2 -- 3
+            }
+        }
+        fun1(1, 2, 3); 
+
+        // 3. callee 属性
+        function fun2() {
+            console.log(arguments.callee); // f
+            console.log(arguments.callee == fun2); // true
+        }
+        fun2();
+        console.log(fun2); // f 
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

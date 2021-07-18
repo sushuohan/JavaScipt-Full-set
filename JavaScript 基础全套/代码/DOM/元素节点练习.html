@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点的获取</title>
+    <script>
+        /*
+        1. 通过 document 对象调用用于获取元素节点
+            - getElementById() 通过 id 属性获取一个元素节点对象
+            - getElementsByTagName() 通过标签名获取一组元素节点对象
+            - getElementsByName() 通过 name 属性获取一组元素节点对象
+        2. 通过具体的元素节点调用用于获取元素节点的子节点
+            - getElementByTagName() 方法返回当前节点的指定标签名后代节点
+            - childNodes 属性表示当前节点的所有子节点
+            - firstChild 属性表示当前节点的第一个子节点
+            - lastChild 属性表示当前节点的最后一个子节点
+        3. 通过具体的元素节点调用用于获取父节点和兄弟节点
+            - parentNode 属性表示当前节点的父节点
+            - previousSibling 属性表示当前节点的前一个兄弟节点
+            - nextSibling 属性表示当前节点的后一个节点
+        */
+
+        window.onload = function () {
+            var btn1 = document.getElementById('first');
+            var btn2 = document.getElementById('second');
+            var btn3 = document.getElementById('third');
+            var btn4 = document.getElementById('fourth');
+            var btn5 = document.getElementById('fifth');
+            var btn6 = document.getElementById('sixth');
+
+            // 通过点击第一个按钮可以输出第一个名字
+            btn1.onclick = function () {
+                // 第一步获取 id 为 thirdtr 的 tr 标签
+                var thirdTr = document.getElementById('thirdtr');
+                // 第二步获取内容为 susu 的 td 标签
+                var firstTd = thirdTr.getElementsByTagName('td')[0];
+                console.log(firstTd.innerHTML); // 'susu'
+            }
+
+            // 通过点击第二个按钮可以修改二个名字
+            btn2.onclick = function () {
+
+                var fourthTr = document.getElementById('fourthtr');
+
+                // 修改第一个名字
+                var name1 = prompt('请输入第一项的名字');
+                var firstName = fourthTr.previousElementSibling.childNodes[1].innerHTML;
+                fourthTr.previousElementSibling.childNodes[1].innerHTML = ((name1) ? (name1) : firstName);
+
+                // 修改第二个名字
+                var name2 = prompt('请输入第二项的名字');
+                var secondName = fourthTr.childNodes[1].innerHTML;
+                fourthTr.childNodes[1].innerHTML = (name2) ? (name2) : secondName;
+            }
+
+            // 通过点击第三个按钮可以输出第一个名字的爱好
+            btn3.onclick = function () {
+                // 第一步获取 id 为 thirdtr 的 tr 标签
+                var a = document.getElementById('thirdtr');
+                // 第二步获取其前一个兄弟标签 tr
+                var b = a.previousElementSibling;
+                // 第三步获取其第一个子节点 td
+                var c = b.getElementsByTagName('td')[0];
+                console.log(c.innerHTML);
+            }
+
+            // 通过点击第四个按钮可以输出第二个名字的爱好
+            btn4.onclick = function () {
+                // 第一步获取 id 为 thirdtr 的 tr 标签
+                var a = document.getElementById('thirdtr');
+                // 第二步获取其前一个兄弟标签 tr
+                var b = a.previousElementSibling;
+                // 第三步获取其第一个子节点 td
+                var c = b.getElementsByTagName('td')[1];
+                console.log(c.innerHTML);
+            }
+
+
+            // 通过点击第五个按钮可以修改二个爱好
+            btn5.onclick = function () {
+                var thirdTr = document.getElementById('thirdtr');
+                var secondTr = thirdTr.previousElementSibling;
+
+                // 修改第一个爱好
+                var love1 = prompt('修改的第一个爱好为：');
+                var firstLove = secondTr.getElementsByTagName('td')[0].innerHTML;
+                secondTr.getElementsByTagName('td')[0].innerHTML = (love1 ? love1 : firstLove);
+
+                // 修改第二个爱好
+                var love2 = prompt('修改的第二个爱好为：');
+                var secondLove = secondTr.getElementsByTagName('td')[1].innerHTML;
+                secondTr.getElementsByTagName('td')[1].innerHTML = (love2 ? love2 : secondLove);
+            }
+
+            // 通过点击第五个按钮可以修改表格的背景色并且返回 rgb 数值
+            btn6.onclick = function () {
+                var div = document.getElementById('outer1');
+                num1 = +prompt("请输入一个整数用来表示第一个 rgb 值(范围 0-255)");
+                while (num1 > 255 || num1 < 0 || isNaN(num1) || num1 == 0) {
+                    num1 = +prompt("别瞎输啊！请重新输入一个整数用来表示第一个 rgb 值(范围 0-255)");
+                }
+
+                num2 = +prompt("请输入一个整数用来表示第二个 rgb 值(范围 0-255)");
+                while (num2 > 255 || num2 < 0 || isNaN(num2) || num2 == 0) {
+                    num2 = +prompt("别瞎输啊！请重新输入一个整数用来表示第二个 rgb 值(范围 0-255)");
+                }
+
+                num3 = +prompt("请输入一个整数用来表示第三个 rgb 值(范围 0-255)");
+                while (num3 > 255 || num3 < 0 || isNaN(num3) || num3 == 0) {
+                    num3 = +prompt("别瞎输啊！请重新输入一个整数用来表示第三个 rgb 值(范围 0-255)");
+                }
+
+                console.log('(' + num1 + ',' + num2 + ',' + num3 + ')');
+                div.style.backgroundColor = "rgb(" + num1 + "," + num2 + "," + num3 + ")";
+            }
+        }
+    </script>
+    <style>
+        #outer1 {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: aqua;
+            /* 设置文本居中 */
+            text-align: center;
+        }
+
+        #outer2 {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: rgb(255, 127, 255);
+            /* 设置文本居中 */
+            text-align: center;
+        }
+
+        #div {
+            float: left;
+            ;
+        }
+
+        #txt1 {
+            background-color: rgb(217, 255, 0);
+        }
+
+        #txt2 {
+            background-color: rgb(255, 127, 255);
+        }
+
+        #txt3 {
+            background-color: rgb(0, 255, 242);
+        }
+
+        #txt4 {
+            background-color: rgb(255, 0, 128);
+        }
+
+        #txt5 {
+            background-color: rgb(255, 0, 13);
+        }
+
+        #txt6 {
+            background-color: rgb(72, 255, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">
+        <h4 id="txt1">第一个按钮用来输出第一个姓名</h4>
+        <h4 id="txt2">第二个按钮用来改变二个姓名</h4>
+        <h4 id="txt3">第三个按钮用来输出第一个姓名的爱好</h4>
+        <h4 id="txt4">第四个按钮用来输出第二个姓名的爱好</h4>
+        <h4 id="txt5">第五个按钮用来修改二个爱好</h4>
+        <h4 id="txt6">第六个按钮用来修改表格背景色</h4>
+    </div>
+    <div id="outer1">
+        <table border="1" width="500px" height="200px">
+            <tr>
+                <!-- 1. 垂直合并 2 个单位-->
+                <th rowspan="2">姓名</th>
+                <!-- 2. 水平合并 2 个单位 -->
+                <th colspan="2">爱好</th>
+                <!-- 3. 被行元素(爱好)合并<th></th> -->
+            </tr>
+            <tr>
+                <!-- 4. 被元素(姓名)垂直合并 <td></td> -->
+                <td align="center">萝卜</td>
+                <td align="center">青菜</td>
+            </tr>
+            <tr id="thirdtr">
+                <td align="center">susu</td>
+                <td align="center">是</td>
+                <td></td>
+            </tr>
+            <tr id="fourthtr">
+                <td align="center">keke</td>
+                <td></td>
+                <td align="center">是</td>
+            </tr>
+        </table>
+    </div>
+    <div id="outer2">
+        <button id="first">1</button>
+        <button id="second">2</button>
+        <button id="third">3</button>
+        <button id="fourth">4</button>
+        <button id="fifth">5</button>
+        <button id="sixth">6</button>
+    </div>
+</body>
+
+</html>

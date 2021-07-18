@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入框</title>
+    <script>
+        /*
+        prompt() 函数可以弹出一个提示框，该提示框中会带有一个文本框
+            - 用户可以在文本框中输入一段内容，该函数需要一个字符串作为参数
+            - 该字符串将会作为提示框的提示文字
+            - 用户输入的内容将会作为函数的返回值返回，可以定义一个变量来接收
+        */
+
+        // 1. 根据期末成绩来定奖励
+        var score = +prompt('请输入自己的期末成绩');
+
+        while (score > 100 || score < 0 || isNaN(score)) {
+            var score = prompt('别搞小动作！请重新输入自己的期末成绩！！！');
+        }
+
+        if (score >= 80 && score <= 100) {
+            console.log('奖励你一个大大的玩具！');
+        } else if (score >= 60 && score < 80) {
+            console.log('奖励你一朵大大的大红花');
+        } else if (score >= 40 && score < 60) {
+            console.log('不要气馁，下次努力！');
+        } else {
+            console.log('老师一直是你坚强的后盾');
+        }
+
+        // 2. 根据三个因素来决定到底嫁不嫁
+        var money = +prompt('请输入你的财产(单位为 万)');
+        var appearence = +prompt('请输入你外表的评分(满分为 10)');
+        var height = +prompt('请输入你的身高(单位 米)');
+
+        while(appearence < 0 || isNaN(appearence)){
+            var appearence = prompt('不要觉得自己很差，请重新输入你外表的评分(满分为 10)');
+        }
+
+        while(height < 0 || height > 2.5 || isNaN(height)){
+            var height = prompt('用你的尺子去量量！别瞎搞！请重新输入你的身高(单位 米)');
+        }
+
+        if(money > 500 && appearence > 9 && height > 1.8){
+            alert('我愿意嫁给你！');
+        }else if(money > 500 || appearence >9 || height > 1.8){
+            alert('我考虑一下要不要嫁给你');
+        }else{
+            alert('我不嫁！')
+        }
+
+        // 3. 根据大小对三个数进行从小到大的排序
+        var number1 = +prompt('请输入第一个数');
+        var number2 = +prompt('请输入第二个数');
+        var number3 = +prompt('请输入第三个数');
+
+        if(number1 > number2 && number1 >number3){
+            if(number2 > number3){
+                console.log(number3 + '***' + number2 + '***' + number1);
+            }else{
+                console.log(number2 + '***' + number3 + '***' + number1);
+            }
+        }else if(number2 > number1 && number2 >number3){
+            if(number1 > number3){
+                console.log(number3 + '***' + number1 + '***' + number2);
+            }else{
+                console.log(number1 + '***' + number3 + '***' + number2);
+            }
+        }else{
+            if(number2 > number1){
+                console.log(number1 + '***' + number2 + '***' + number3);
+            }else{
+                console.log(number2 + '***' + number1 + '***' + number3);
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

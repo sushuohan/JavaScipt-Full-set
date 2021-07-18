@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其它进制的数字</title>
+    <script>
+        /*
+        如果需要表示 16 进制的数字，则需要以 0x 开头
+        如果需要表示 8 进制的数字，则需要以 0 开头
+        如果需要表示 2 进制的数字，则需要以 0b 开头
+        */
+
+        var number1 = 0xff;
+        console.log(number1); // 255
+
+        var number2 = 077;
+        console.log(number2); // 63
+
+        var number3 = 0b111111;
+        console.log(number3); // 63
+
+        // 需要注意的是像 077 这种数据，有些浏览器会当成 8 进制解析，有些会当成 10 进制解析，我们利用如下方法
+        var str = '070';
+        var number4 = parseInt(str, 10);
+        var number5 = parseInt(str, 8);
+        console.log(number4); // 70
+        console.log(number5); // 56
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
