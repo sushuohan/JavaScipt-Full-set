@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件优化</title>
+    <script>
+        window.onload = function () {
+            // 获取 box1
+            var box1 = document.getElementById('box1');
+            // 设置速度为全局变量
+            var speed = 10;
+            // 设置方向为全局变量
+            var dir;
+
+            setInterval(function () {
+                switch (dir) {
+                    case 37:
+                        box1.style.left = box1.offsetLeft - speed + 'px';
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + 'px';
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + 'px';
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + 'px';
+                        break;
+                }
+            }, 30)
+
+            // 键盘按下事件
+            document.onkeydown = function (event) {
+                event = event || window.event;
+                // 若按下 ctrl，则速度加快
+                if (event.ctrlKey) {
+                    speed = 50;
+                } else {
+                    speed = 10;
+                }
+                // 使 dir 等于按键的值
+                dir = event.keyCode;
+            }
+
+            // 键盘松开事件
+            document.onkeyup = function () {
+                dir = 0;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div style="height: 100px; width: 100px; background-color: rgb(235, 129, 129); position: absolute;" id="box1"></div>
+</body>
+
+</html>

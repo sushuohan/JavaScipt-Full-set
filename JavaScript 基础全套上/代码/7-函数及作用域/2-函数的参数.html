@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的参数</title>
+    <script>
+        /*
+        定义一个用来求二个数和的函数
+            - 可以在函数的 () 中指定一个或多个形参(形式参数)
+            - 多个形参之间用逗号隔开，声明形参就相当于在函数内部声明了对应的变量
+        */
+
+        function sum(a, b) {
+            console.log(a + b);
+        }
+        var number1 = +prompt('请输入一个数字'); // 9
+        var number2 = +prompt('请再输入一个数字'); // 9
+
+        /*
+        在调用函数时，可以在 () 中指定实参(实际参数)
+            - 实参将会赋值给函数中对应的形参
+        */
+
+        sum(number1, number2); // 18
+
+        /*
+        调用函数时解析器不会检查实参的类型
+        */
+
+        sum(true, false) // 1
+        sum('123', 456) // '123456'
+
+        /*
+        调用函数时解析器也不会检查实参的数量
+            - 如果实参的数量多于形参的数量，那么多余实参不会赋值
+            - 如果实参的数量少于形参的数量，那么多余的形参将被赋值为 undefined
+        */
+
+        sum(123, 456, '123', true); // 579
+        sum('123'); // '123undefined'
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div跟随鼠标移动</title>
+    <script>
+        window.onload = function () {
+            var div1 = document.getElementById('box1');
+
+            // 绑定鼠标移动事件
+            document.onmousemove = function (event) {
+                // 解决兼容问题(IE8 以下的浏览器中)
+                event = event || window.event;
+
+                // 1. 第一种方法：获取到鼠标的坐标(相当于可见窗口) -- 此时窗口也相当于整个页面
+                // var x = event.clientX;
+                // var y = event.clientY;
+                // // 设置 div 的偏移量（相对于整个页面）
+                // div1.style.left = x + 'px';
+                // div1.style.top = y + 'px';
+
+                // 2. 第二种方法：pageX 和 pageY 可以获取鼠标相对于当前页面的坐标
+                // 但是这两个属性在 IE8 中不支持，所以如果需要兼容 IE8 ，则不要使用
+                // var x = event.pageX;
+                // var y = event.pageY;
+                // div1.style.left = x + 'px';
+                // div1.style.top = y + 'px';
+
+                // 3. 第三种方法：获取滚动条滚动的距离
+                // chrome 认为浏览器的滚动条是 body 的，可以通过 body.scrollTop 来取
+                // 火狐等浏览器认为浏览器的滚动条是 html 的
+                var st = document.body.scrollTop || document.documentElement.scrollTop;
+                var sl = document.body.scrollLeft || document.documentElement.scrollLeft;
+                var x = event.clientX;
+                var y = event.clientY;
+                div1.style.left = x + sl + 'px';
+                div1.style.top = y + st + 'px';
+            }
+        }
+    </script>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(77, 226, 194);
+            position: relative;
+        }
+
+        body {
+            height: 1000px;
+            width: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

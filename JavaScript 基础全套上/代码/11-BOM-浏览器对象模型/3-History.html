@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <script>
+        window.onload = function(){ 
+            // History代表浏览器的历史记录，通过该对象可以操作浏览器的历史记录
+
+            // length 可以获取当前访问链接历史记录的数量
+            console.log(history.length);
+
+            // 获取 btn01 按钮
+            var btn1 = document.getElementById('btn01');
+            btn1.onclick = function(){
+                // back() 可以回退到上一个页面，作用和浏览器的回退按钮一样
+                history.back();
+            }
+
+            // 获取 btn02 按钮
+            var btn2 = document.getElementById('btn02');
+            btn2.onclick = function(){
+                // forward() 可以前进到下一个画面，作用和浏览器的前进按钮一样
+                history.forward();
+            }
+
+            // 获取 btn03 按钮
+            var btn3 = document.getElementById('btn03');
+            btn3.onclick = function(){
+                /*
+                go() 可以用来跳转到指定的页面，它需要一个整数作为参数
+                    - 1 表示向前跳转一个页面，相当于 forward()
+                    - 2 表示向前跳转二个页面
+                    - -1 表示向后跳转一个页面，相当于 back()
+                    - -2 表示向后跳转二个页面
+                        
+                */
+                history.go(-2);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn01">回退</button>
+    <button id="btn02">前进</button>
+    <a href="2-Navigator.html">下一个页面</a>
+    <button id="btn03">向后回退2个页面</button>
+</body>
+</html>

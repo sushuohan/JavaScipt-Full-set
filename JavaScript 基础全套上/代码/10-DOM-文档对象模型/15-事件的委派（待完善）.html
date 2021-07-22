@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的委派</title>
+    <script>
+        function addClick(ul) {
+            var aArr = ul.getElementsByTagName('a');
+            for (var i = 0; i < aArr.length; i++) {
+                aArr[i].onclick = function () {
+                    console.log('你是猪猪');
+                    // 阻止浏览器默认行为 -- 跳转
+                    return false;
+                }
+            }
+        }
+
+        window.onload = function () {
+            // 为每一个超链接绑定点击函数
+            // 但是这些操作只能为已有的超链接绑定点击函数，新创建的需要重新绑定
+            // var linkArr = document.getElementsByTagName('a');
+            // for (var i = 0; i < linkArr.length; i++) {
+            //     linkArr[i].onclick = function () {
+            //         alert('你的孩子')
+
+            //         // 阻止浏览器默认行为 -- 跳转
+            //         return false;
+            //     }
+            // }
+
+            // 点击按钮后添加超链接
+            var btn1 = document.getElementById('btn01');
+            var ul = document.getElementById('ul');
+            btn1.onclick = function () {
+                ul.innerHTML += "<li><a href='abc' class='link'>超链接</a></li>";
+            }
+
+            /*
+            事件的委派
+                - 指将事件统一绑定给元素的共同的祖先元素,这样在后代元素上的事件触发时,会一直冒泡到祖先元素
+                - 事件委派是利用了冒泡.通过委派可以减少事件绑定的次数，提高程序的性能
+            */
+            ul.onclick = function (event) {
+                // 处理兼容问题
+                event = event || window.event;
+
+                // target - event 中的 target 表示触发事件的对象
+                // 如果触发事件的对象是我们期望的元素，则执行，否则不执行
+                if (event.target.className == 'link') {
+                    addClick(event.target);
+                } else {
+                    alert('别乱点');
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id='btn01'>添加超链接</button>
+    <ul id="ul" style="background-color: aqua;">
+        <li>
+            <p>我是 p 元素</p>
+        </li>
+        <li><a href="abc" class="link">超链接1</a></li>
+        <li><a href="abc" class="link">超链接2</a></li>
+        <li><a href="abc" class="link">超链接3</a></li>
+    </ul>
+</body>
+
+</html>

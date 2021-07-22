@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域</title>
+    <script>
+        /*
+        作用域
+            - 作用域指一个变量作用的范围
+            - 在 JS 中一共有二种作用域
+                1. 全局作用域
+                    - 直接编写在 script 标签中的 JS 代码，都在全局作用域中
+                    - 全局作用域在页面打开时创建，在页面关闭时销毁
+                    - 在全局作用域中有一个全局对象 window
+                        1. 它代表的是一个浏览器窗口，由浏览器创建，我们可以直接使用
+                    - 在全局作用域中
+                        1. 创建的变量都会作为 window 对象的属性保存
+                        2. 创建的函数都会作为 window 对象的方法保存
+                2. 函数作用域
+                    - 调用函数时创建函数作用域，函数执行完毕后，函数作用域销毁
+                    - 每调用一次函数就会创建一个新的函数作用域，他们之间是相互独立的
+                    - 在函数作用域中可以访问到全局作用域的变量
+                    - 在全局作用域中无法访问到函数作用域的变量
+                    当在函数作用域操作一个变量时，它会先在自身作用域中寻找
+                        1. 如果有就直接使用
+                        2. 如果没有则向上一级作用域中寻找
+                        3. 如果全局中仍没有，则会报错
+        */
+
+        // 1. 全局作用域
+        var a = 1;
+
+        function fun() {
+            console.log('我是一个函数');
+        }
+        console.log(window.a); // 1
+        window.fun(); // '我是一个函数'
+
+        // 2. 函数作用域
+        // 函数内可以访问到全局变量
+        // 函数外访问不到函数内的变量
+        var b = 10;
+        fun1(); // 函数的提前声明
+        function fun1() {
+            console.log(b); // 10
+            var a1 = 100;
+        }
+        // console.log(a1);  //  a1 is not defined
+
+        // 函数内变量覆盖全局变量
+        // 函数内没有声明 var c，于是修改了上一级(全局)的变量 c
+        var c = 10;
+        fun2(); // 函数的提前声明
+        function fun2() {
+            c = 100;
+            console.log(c); // 100
+        }
+        console.log(c); // 100
+
+        // 全局仍没有函数内的待执行变量
+        // function fun3() {
+        //     function fun4() {
+        //         console.log('嘤嘤嘤' + t);
+        //     }
+        //     fun4();
+        // }
+        // fun3();  // 报错 -- t is not defined
+
+        // 函数传参
+        var e = 77;
+
+        function fun5(e) {
+            // 相当于在函数内声明了 var e
+            console.log(e);
+        }
+        fun5(); // undefined
+        fun5(e); // 77
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

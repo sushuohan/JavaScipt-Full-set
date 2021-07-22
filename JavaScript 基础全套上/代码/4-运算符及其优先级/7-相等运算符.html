@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相等运算符</title>
+    <script>
+        /*
+        相等运算符用来比较二个值是否相等，如果相等则返回 true，否则返回 false
+            - 使用 == 来做相等运算
+                1. 当使用 == 来做相等判断的时候，如果值的类型不同，则会自动进行类型转换，将其转换为相同的类型，然后再比较
+                2. undefined 衍生自 null，即它们做相等判断返回 true
+                3. NaN 不和任何值相等，包括本身，但是可以调用 isNaN() 函数来判断一个值是否是 NaN
+        
+        不相等运算符用来判断二个值是否不相等，如果不相等则返回 true，否则返回 false
+            - 使用 != 来做不相等运算
+                1. 当使用 != 来做不相等判断的时候，如果值的类型不同，则会自动进行类型转换，将其转换为相同的类型，然后再比较
+                2. NaN 和任何值都不相等，包括本身，比较之后会返回 true
+
+        全等运算符用来判断二个值是否完全相等，和相等类似，不同的是它不会自动转换类型
+            - 使用 === 来做全等运算
+                1. 如果二个值的类型不同，直接返回 false
+                2. 只有当值的类型一致，值一致的时候，才会返回 true
+        
+        不全等运算符用来判断二个值是否完全不相等，和不相等类似，不同的是它不会自动转换类型
+            - 使用 !== 来做不全等运算
+                1. 如果二个值的类型不同，直接返回 true
+                2. 如果二个值不相等，直接返回 true
+        */
+
+        // 1. 相等
+        // 数字之间
+        var a = 10;
+        console.log(a == 3); // false
+        // 非数字之间
+        console.log(true == '1'); // true
+        console.log(null == 0); // false
+        console.log(null == undefined); // true
+        console.log(NaN == NaN); // false
+        console.log(isNaN(NaN)); // true
+
+        // 2. 不相等
+        // 数字之间
+        var a = 10;
+        console.log(a != 5); // true
+        // 非数字之间
+        console.log(true != 2); // true
+        console.log(NaN != NaN); // true
+
+        // 3. 全等
+        console.log(true === '1'); // false
+        console.log(null === undefined); // false
+        console.log(1 === 1); // true
+
+        // 4. 不全等
+        console.log(true !== '1'); // true
+        console.log(99 !== 100); // true
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

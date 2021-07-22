@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+    <script>
+        window.onload = function () {
+            var box1 = document.getElementById('box1');
+            /*
+            键盘事件
+                - onkeydown 按键被按下 -- onkeyup 按键被松开
+                - 键盘事件一般会绑定给一些可以获取到焦点的对象或者是 document
+                - 当按下事件被连续触发时，第一次和第二次之间的间隔时间会稍微长一点，实质上是为了防止我们的误触
+            */
+            document.onkeydown = function (event) {
+                // 处理兼容问题
+                event = event || window.event;
+
+                /*
+                可以通过 keyCode 来获取按键的编码 -- 来判断哪个键被按下
+                除了 keyCode，事件中还提供了几个属性 altKey、ctrlKey、shiftKey
+                    - 这三个用来判断 alt、ctrl、shift 是否按下，按下则返回 true
+                */
+
+                // 1. 判断 ctrl 和 c 是否同时按下
+                if (event.ctrlKey && event.keyCode == 67) {
+                    console.log('ctrl 和 c 键同时被触发！');
+                }
+
+                // 2. div 移动案例
+                // 定义盒子移动的速度
+                var speed = 10;
+
+                // 按下 ctrl 键后速度加快
+                if (event.ctrlKey) {
+                    speed = 50;
+                }
+
+                switch (event.keyCode) {
+                    case 37:
+                        box1.style.left = box1.offsetLeft - speed + 'px';
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + 'px';
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + 'px';
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + 'px';
+                        break;
+                }
+            }
+
+            // 鼠标松开事件
+            // document.onkeyup = function(){}
+
+            // 获取 input
+            var input = document.getElementById('input');
+            input.onkeydown = function (event) {
+                // 在文本框元素的按键按下事件内取消了默认行为那么输入的内容将不会出现在文本框中
+                // return false;
+
+                // 使文本框内不能输入数字
+                if (event.keyCode >= 48 && event.keyCode <= 57) {
+                    return false;
+                } else {
+                    console.log('你输入了编码为' + event.keyCode + '的字符');
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div style="height: 100px; width: 100px; background-color: rgb(235, 129, 129); position: absolute;" id="box1"></div>
+    <br>
+    <br>
+    <input type="text" id="input">
+</body>
+
+</html>

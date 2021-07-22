@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>返回值的类型</title>
+    <script>
+        // 1. 结合函数研究一下 break 和 continue 语句
+        // break
+        function fun() {
+            for (var i = 1; i < 10; i++) {
+                if (i == 5) {
+                    break; // 退出循环
+                }
+                console.log(i)
+            }
+            console.log('循环结束！');
+            console.log('函数结束！');
+        }
+
+        fun(); // 1-4 循环结束！ 函数结束！
+
+        // continue
+        function fun1() {
+            for (var i = 1; i < 10; i++) {
+                if (i == 5) {
+                    continue; // 退出本次循环
+                }
+                console.log(i)
+            }
+            console.log('循环结束！');
+            console.log('函数结束！');
+        }
+
+        fun1(); // 1-4 6-9 循环结束！ 函数结束！
+
+        // return
+        function fun2() {
+            for (var i = 1; i < 10; i++) {
+                if (i == 5) {
+                    return; // 退出函数
+                }
+                console.log(i)
+            }
+            console.log('循环结束！');
+            console.log('函数结束！');
+        }
+
+        fun2(); // 1-4 
+
+        // 2. 返回值为对象
+        function fun3() {
+            var obj = {
+                name: 'susu',
+                age: 19
+            }
+            return obj;
+        }
+
+        console.log(fun3()); // {name: "susu", age: 19}
+
+        // 3. 返回值为函数
+        // 其一
+        function fun4() {
+            function fun5() {
+                console.log('我是 fun5');
+            }
+            return fun5();
+        }
+
+        fun4() // '我是 fun5'
+
+        // 其二
+        function fun6() {
+            return fun7;
+        }
+
+        function fun7() {
+            console.log('我是 fun7');
+        }
+
+        var a = fun6(); // a = fun7
+        a(); // '我是 fun7'
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

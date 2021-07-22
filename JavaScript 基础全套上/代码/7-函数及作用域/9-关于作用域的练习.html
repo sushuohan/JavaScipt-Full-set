@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域练习</title>
+    <script>
+        /* 
+        1. 题一
+            - var a 和 fun() 函数在所有代码执行前被提前声明 -- 也就是说可以提前调用函数或使用变量(可能没赋值)
+            - 第一行代码将此前声明的变量 a 赋值为 123，第四行代码调用 fun() 函数，浏览器响应，输出变量 a
+            - 由于函数体内没有声明变量 a，故向上一级(即全局环境内查找)，发现全局作用域中有 var a = 123;
+            - 故 fun() 函数最终导致控制台输出内容为 123
+        */
+        var a = 123;
+
+        function fun() {
+            console.log(a);
+        }
+        fun(); // 123
+
+        /*
+        2. 题二
+            - var b 和 fun1() 函数在所有代码执行前被提前声明 -- 也就是说可以提前调用函数或使用变量(可能没赋值)
+            - 第一行代码将此前声明的变量 b 赋值为 123，第六行代码调用 fun() 函数，令控制台输出内部变量 b
+            - 此时在函数体内查找 b 变量是否声明，发现存在 var b，但是还没有赋值，于是输出内容 undefined
+            - 故 fun1() 函数最终导致控制台输出内容为 undefined
+            - 第七行代码直接输出全局作用域中的变量 b，也就是 123
+        */
+        var b = 123;
+
+        function fun1() {
+            console.log(b);
+            var b = 456;
+        }
+        fun1(); // undefined
+        console.log(b); //123
+
+        // 3. 题三
+        var c = 123;
+        function fun2(){
+            console.log(c);
+            c = 456;
+        }
+        fun2(); // 123
+        console.log(c) // 456
+
+        // 4. 题四
+        var d = 123;
+        function fun3(d){
+            console.log(d);
+            d = 456;
+        }
+        fun3(123); // 123
+        console.log(d); //123
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

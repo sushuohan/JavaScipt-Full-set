@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器简介</title>
+    <script>
+        window.onload = function () {
+            var h1 = document.getElementById('text1');
+
+            /*
+            setInterval()
+                - 定时调用
+                - 可以将一个函数，每隔一段时间执行一次
+                - 参数：
+                    1. 回调函数，该函数会每隔一段时间被调用一次
+                    2. 每次调用间隔的时间，单位是毫秒
+                - 返回值：返回一个 Number 类型的数据
+                    这个数字作为计时器的唯一标识
+
+            clearInterval() 可以用来关闭一个定时器
+                - 方法中需要一个定时器的标识作为参数，这样才能关闭标识对应的计时器
+            */
+            var num = 1;
+
+            var timer = setInterval(function () {
+                h1.innerHTML = num++;
+
+                if (num == 10) {
+                    clearInterval(timer);
+                }
+            }, 500)
+            console.log(timer); // 1
+        }
+    </script>
+</head>
+
+<body>
+    <h1 id="text1"></h1>
+</body>
+
+</html>

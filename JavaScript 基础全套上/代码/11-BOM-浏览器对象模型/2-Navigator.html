@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigator</title>
+    <script>
+        window.onload = function () {
+            /*
+        Navigator
+            - 代表当前浏览器的信息，通过该对象可以来识别不同的浏览器
+            - 由于历史原因，Navigator 对象中的大部分属性都已经不能帮助我们识别浏览器了
+            - 一般我们只会使用 userAgent 来判断浏览器的信息
+                userAgent 是一个字符串，这个字符串中含有用来描述浏览器信息的内容
+                不同的浏览器会有不同的 userAgent
+        
+        谷歌浏览器：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36
+        火狐浏览器：Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
+        IE8浏览器：Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; Tablet PC 2.0)
+        IE9浏览器：Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; Tablet PC 2.0)
+        IE10浏览器：Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; Tablet PC 2.0)
+        IE11浏览器：Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; Tablet PC 2.0; rv:11.0) like Gecko
+            在 IE11 中已经将微软和 IE 相关的标识都去掉了，所以我们基本已经不能通过 userAgent 来识别一个浏览器是否是 IE 了
+        */
+            var name = navigator.userAgent;
+            if (/chrome/i.test(name)) {
+                console.log('你是谷歌浏览器');
+            } else if (/firefox/i.test(name)) {
+                console.log('你是火狐浏览器');
+            } else if (/msie/i.test(name)) {
+                console.log('你是 IE 浏览器(版本10以下)');
+            } else if ('ActiveXObject' in window) {
+                console.log('你是 IE 浏览器');
+            }
+            /*
+            如果通过 userAgent 不能判断，还可以通过一些浏览器(IE 浏览器)中特有的对象来判断浏览器的信息
+                比如：ActiveXObject
+            */
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

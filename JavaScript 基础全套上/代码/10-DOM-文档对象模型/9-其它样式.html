@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其它样式</title>
+    <script>
+        window.onload = function () {
+                var btn1 = document.getElementById('btn01');
+                var div = document.getElementById('box');
+                var div1 = document.getElementById('box2');
+                btn1.onclick = function () {
+                    /*
+                    1. clientWidth 和 clientHeight 
+                        - 这两个属性可以获取元素的可见宽度和高度 -- 此处的可见区域指的是 div 盒子里的子元素显示的范围
+                        - 这两个属性都是不带 px 的，返回都是一个数字，可以直接计算
+                        - 会获取元素的宽度和高度，包括内容区和边框区(padding)
+                        - 这些属性都只是可读的，不可修改
+                    */
+                    console.log(div.clientHeight); // 240
+
+                    /*
+                    2. offsetWidth 和 offsetHeight
+                        - 这两个属性可以获取元素的整个宽度和高度
+                        - 包括内容区、内边距(padding)及边框(border)
+                    */
+                    console.log(div.offsetHeight); // 260
+
+                    // 3. offsetParent 可以用于获取当前元素的定位父元素(即父元素设置了定位属性)
+                    // 会获取到离当前元素最近的开启了定位的祖先元素，如果所有的祖先元素都没有开启定位则返回 body
+                    console.log(div.offsetParent.id); // 'box1'
+
+                    /*
+                    4. offsetLeft 和 offsetTop 
+                        - 这两个属性可以获取当前元素对于其定位父元素的水平偏移量和垂直偏移量
+                    */
+                    // 此处定位父元素是 id 为 box1 的元素
+                    console.log(div.offsetLeft); // 20
+                    console.log(div.offsetTop); // 20 
+                    // 此处定位父元素是 body
+                    console.log(div1.offsetLeft); // 8
+                }
+        }       
+    </script>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            padding: 20px;
+            margin: 20px;
+            border: 10px solid yellow;
+        }
+
+        #box1 {
+            width: 300px;
+            height: 300px;
+            background-color: thistle;
+            position: relative;
+            float: right;
+        }
+
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background-color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn01">点我一下</button>
+    <br>
+    <br>
+    <div id="box1">
+        <div id="box">你是一个小猪猪！</div>
+    </div>
+    <div id="box2"></div>
+</body>
+
+</html>

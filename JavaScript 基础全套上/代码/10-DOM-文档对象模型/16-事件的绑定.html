@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的绑定</title>
+    <script>
+        window.onload = function () {
+            // 事件的绑定1 -- 语法：对象.事件 = 函数;
+            // 只能同时为一个元素的一个事件绑定一次，如果使用多个，则后面的会覆盖之前的
+            var btn1 = document.getElementById('btn01');
+            // 为按钮 btn1 绑定单击响应函数
+            btn1.onclick = function () {
+                console.log('方法1 -- 1');
+            }
+            // 继续为按钮 btn1 绑定单击响应函数
+            btn1.onclick = function () {
+                console.log('方法1 -- 2'); // '方法1 -- 2'
+            }
+
+            /* 
+            对于非 IE8 浏览器
+            事件的绑定2 -- 语法：addEventListener(事件, 回调函数)
+                参数：
+                    1. 事件的字符串不需要 on
+                    2. 回调函数，当事件触发时该函数会被调用
+                    3. 是否在捕获阶段触发事件，一般都传 false
+            */
+            // var btn2 = document.getElementById('btn02');
+            // btn2.addEventListener('click', function () {
+            //     console.log('方法2 -- 1'); // '方法2 -- 1'
+            // }, false);
+
+            // btn2.addEventListener('click', function () {
+            //     console.log('方法2 -- 2'); // '方法2 -- 2'
+            // }, false);
+            // 使用 addEventListener() 可以同时为一个元素的相同事件绑定多个响应函数
+
+            /*
+            对于 IE8 浏览器
+            事件的绑定2 -- 语法：attachEvent()
+                - 在 IE8 中可以使用 attachEvent() 来绑定事件
+                - 参数：
+                    1. 事件的字符串要 on
+                    2. 回调函数
+                - 这个方法也可以同时为一个事件绑定多个处理函数
+                    不同的是它是后绑定先执行，执行顺序和 addEventListener() 相反
+            */
+            // var btn3 = document.getElementById('btn03');
+            // btn3.attachEvent('onclick', function () {
+            //     alert('IE8绑定 -- 1');
+            // });
+
+            // btn3.attachEvent('onclick', function () {
+            //     alert('IE8绑定 -- 2');
+            // });
+
+            // console.log('addEventListener' in window);
+
+            // 为了不报错，我们作判断
+            if ('addEventListener' in window) {
+                var btn2 = document.getElementById('btn02');
+                btn2.addEventListener('click', function () {
+                    console.log('方法2 -- 1'); // '方法2 -- 1'
+                }, false);
+
+                btn2.addEventListener('click', function () {
+                    console.log('方法2 -- 2'); // '方法2 -- 2'
+                }, false);
+            } else {
+                var btn3 = document.getElementById('btn03');
+                btn3.attachEvent('onclick', function () {
+                    console.log('IE8绑定 -- 1');
+                });
+
+                btn3.attachEvent('onclick', function () {
+                    console.log('IE8绑定 -- 2');
+                });
+            }
+
+            // 定义函数的方法来绑定事件
+            var btn4 = document.getElementById('btn04');
+            bind(btn4, 'click', function () {
+                console.log('真听话1');
+                alert(this);
+            });
+            bind(btn4, 'click', function () {
+                console.log('真听话2');
+                alert(this);
+            });
+        }
+
+        // 定义一个函数用来给指定对象绑定事件
+        function bind(obj, eventStr, callback) {
+            if ('addEventListener' in window) {
+                // 大部分浏览器兼容的模式
+                obj.addEventListener(eventStr, callback, false);
+            } else {
+                // IE8 兼容的模式
+                // 此处的匿名函数调用回调函数是来解决 this 不同的问题
+                obj.attachEvent('on' + eventStr, function(){
+                    callback.call(obj);
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点我一下</button>
+    <button id="btn02">你点我一下试试！</button>
+    <button id="btn03">IE8 点我求求了！</button>
+    <button id="btn04">管你是谁，你点我就对了！</button>
+</body>
+
+</html>

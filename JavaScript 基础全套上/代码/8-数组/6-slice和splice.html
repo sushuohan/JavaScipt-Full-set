@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slice and splice</title>
+    <script>
+        /*
+        slice()
+            - 可以用来从数组中提取指定元素
+            - 该方法不会改变原数组，而是将截取到的元素封装到一个新数组中返回
+            - 参数：
+                1. 截取开始位置的索引，包括该元素
+                2. 截取结束位置的索引，不包括该元素
+                3. 第二个参数可以不写
+                    - 索引可以传递一个负值
+        */
+        var arr = [1, 2, 3, 4, 5];
+        var result = arr.slice(0);
+        console.log(result); // [1, 2, 3, 4, 5]
+        var result1 = arr.slice(1, 4);
+        console.log(result1); // [2, 3, 4]
+        var result2 = arr.slice(3, -1);
+        console.log(result2); // [4]
+
+        /*
+        splice()
+            - 可以用于删除数组中的指定元素
+            - 使用 splice() 会影响到原数组，会将指定元素从原数组中删除，并将删除的元素作为返回值返回
+            - 参数：
+                1. 第一个表示开始位置的索引
+                2. 第二个表示删除的数量
+                3. 第三个及以后可以传递一些新的元素，这些元素将自动插入到开始索引前边
+        */
+        arr.splice(1, 2);
+        console.log(arr); // [1, 4, 5]
+        arr.splice(0, 1, '1', '2', '3');
+        console.log(arr); // ["1", "2", "3", 4, 5]
+
+        // 1. 数组去重练习
+        var arr1 = [1, 2, 2, 2, 3, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 9, 10];
+        // 获取数组中的每一个元素
+        for (var i = 0; i < arr1.length; i++) {
+            // 获取当前元素后的所有元素
+            for (var j = i + 1; j < arr1.length; j++) {
+                // 判断二个元素是否相等
+                if (arr1[i] == arr1[j]) {
+                    // 如果相等则证明出来了重复的元素，则删除 j 对应的元素
+                    arr1.splice(j, 1);
+                    // 当删除了当前 j 所在的元素，后边的元素会自动补位
+                    j--;
+                    // 此时将不会比较这个元素，当倘若出来 [1, 1] 这种数组，那么数组的去重将是不完善的
+                }
+            }
+        }
+        console.log(arr1); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

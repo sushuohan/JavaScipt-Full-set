@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的返回值</title>
+    <script>
+        /*
+        return 后的语句不会再执行，至此函数结束
+            - 如果不写 return，返回值将为 undefined
+            - 如果 return 后不跟东西，返回值也将为 undefined
+        */
+
+        // 1. 求三个数的和
+        function sum(a, b, c) {
+            return a + b + c;
+        }
+
+        var number1 = +prompt('请输入一个数字'); // 22
+        var number2 = +prompt('请再输入一个数字'); // 33
+        var number3 = +prompt('请再输入一个数字'); // 44
+
+        result = sum(number1, number2, number3);
+
+        console.log(result); // 99
+
+        // 2. 测试 return 语句
+        function fun1() {
+            return
+        }
+
+        function fun2() {
+            var a = 4;
+        }
+        test1 = fun1();
+        console.log(test1); // undefined
+        test2 = fun2();
+        console.log(test2); // undefined
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

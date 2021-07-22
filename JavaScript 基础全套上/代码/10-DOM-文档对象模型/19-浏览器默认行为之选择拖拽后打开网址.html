@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器默认行为之按下后选择拖拽</title>
+    <script>
+        // 对一个内容绑定鼠标按下事件并且指定返回值为 false 后，将会取消此默认行为
+        window.onload = function(){
+            var p = document.getElementById('p');
+            p.onmousedown = function(){
+                // return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <p id="p">你是猪</p>
+</body>
+</html>

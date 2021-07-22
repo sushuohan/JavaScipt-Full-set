@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延时调用</title>
+    <script>
+        /*
+        延时调用
+            延时调用一个函数不会马上执行，而是隔一段时间再执行，而且只会执行一次
+        延时调用和定时调用的区别
+            定时调用会执行多次，而延时调用只会执行一次
+        */
+        window.onload = function () {
+            var h1 = document.getElementById('text1');
+            var num = 1;
+            var timer = setTimeout(function () {
+                h1.innerHTML = num++;
+            }, 1000);
+            clearTimeout(timer);
+        }
+    </script>
+</head>
+
+<body>
+    <h1 id="text1"></h1>
+</body>
+
+</html>

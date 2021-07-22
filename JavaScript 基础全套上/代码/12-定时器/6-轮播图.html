@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <script src="./工具/1-动画执行.js"></script>
+    <script>
+        window.onload = function () {
+            // 获取 imgList
+            var imgList = document.getElementById('imgList');
+            // 获取页面中的所有的 img 标签
+            var imgArr = document.getElementsByTagName('img');
+            // 设置 imgList 的宽度
+            imgList.style.width = 520 * imgArr.length + 'px';
+
+            // 设置导航居中
+            // 获取 navDiv
+            var navDiv = document.getElementById('navDiv');
+            // 获取 outer
+            var outer = document.getElementById('outer');
+            // 设置 navDiv 的 left 值
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + 'px';
+
+            // 默认显示图片的索引
+            var index = 0;
+            // 获取所有的 a
+            var aArr = document.getElementsByTagName('a');
+            // 设置默认选中的效果
+            aArr[index].style.backgroundColor = "black";
+            // 默认显示为第一张图片
+            imgList.style.left = (-520 * index) + 'px';
+
+            // 为所有的超链接都绑定单击响应函数
+            for (var i = 0; i < aArr.length; i++) {
+                // 为每一个超链接都添加一个 num 属性
+                aArr[i].num = i;
+                // 为超链接绑定单击响应函数
+                aArr[i].onclick = function () {
+                    // 关闭自动切换图片的计时器
+                    clearInterval(timer);
+
+                    // 获取点击超链接的索引
+                    index = this.num;
+
+                    // 修改颜色
+                    setA();
+
+                    // 切换图片
+                    // imgList.style.left = (-520 * index) + 'px';
+                    // 使用 move 函数来切换图片
+                    move(imgList, 'left', -520 * index, 20, function () {
+                        // 动画执行完毕，开启动画自动切换计时器
+                        autoChange();
+                    })
+                    
+                    // 阻止超链接跳转默认行为
+                    return false;
+                }
+
+            }
+
+            // 开启自动切换图片
+            autoChange();
+
+            function setA() {
+
+                if (index >= imgArr.length - 1) {
+                    index = 0;
+                    // 此时显示的是最后一张图片，而最后一张图片和第一张是一模一样的
+                    // 通过 CSS 将最后一张切换成第一张
+                    imgList.style.left = 0;
+                }
+
+                // 遍历 a 使其全为红色
+                for (var i = 0; i < aArr.length; i++) {
+                    aArr[i].style.backgroundColor = 'red';
+                }
+
+                // 将选中的 a 修改为黑色
+                aArr[index].style.backgroundColor = "black";
+            }
+
+            // 自动切换图片的定时器的标识
+            var timer;
+            // 创建一个函数用于自动切换图片
+            function autoChange() {
+                // 开启一个计时器用来定时切换图片
+                timer = setInterval(() => {
+                    // 使索引自增
+                    index++;
+                    // 判断 index
+                    index %= imgArr.length;
+                    // 执行动画，切换图片
+                    move(imgList, 'left', -520 * index, 20, function () {
+                        // 修改颜色
+                        setA();
+                    })
+                }, 3000);
+            }
+        }
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #outer {
+            /* 设置宽和高 */
+            width: 520px;
+            height: 500px;
+            /* 居中 */
+            margin: 50px auto;
+            /* 设置背景颜色 */
+            background-color: rgb(60, 216, 216);
+            /* 设置 padding */
+            padding: 10px 0;
+            position: relative;
+            /* overflow: hidden; */
+        }
+
+        #imgList {
+            /* 去除项目符号 */
+            list-style: none;
+            width: 2600px;
+            left: 0;
+            position: absolute;
+        }
+
+        #imgList li {
+            /* 设置浮动 */
+            float: left;
+            /* 设置左右边距 */
+            margin: 0 10px;
+        }
+
+        #navDiv {
+            position: absolute;
+            bottom: 15px;
+        }
+
+        #navDiv a {
+            /* 设置超链接浮动 */
+            float: left;
+            /* 设置宽和高 */
+            width: 20px;
+            height: 20px;
+            /* 设置背景颜色 */
+            background-color: red;
+            /* 设置左右边距 */
+            margin: 0 5px;
+            /* 设置透明 */
+            opacity: 0.5;
+            /* 兼容 IE8 透明 */
+            filter: alpha(opacity=50);
+        }
+
+        #navDiv a:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 创建一个外部的 div 来作为大的容器 -->
+    <div id="outer">
+        <!-- 创建一个 ul 用于放置图片 -->
+        <ul id="imgList">
+            <li><img src="../10-DOM-文档对象模型/images/1.jpg" alt=""></li>
+            <li><img src="../10-DOM-文档对象模型/images/2.jpg" alt=""></li>
+            <li><img src="../10-DOM-文档对象模型/images/3.jpg" alt=""></li>
+            <li><img src="../10-DOM-文档对象模型/images/4.jpg" alt=""></li>
+            <li><img src="../10-DOM-文档对象模型/images/5.jpg" alt=""></li>
+            <li><img src="../10-DOM-文档对象模型/images/1.jpg" alt=""></li>
+        </ul>
+        <div id="navDiv">
+            <a href="javascipt:;"></a>
+            <a href="javascipt:;"></a>
+            <a href="javascipt:;"></a>
+            <a href="javascipt:;"></a>
+            <a href="javascipt:;"></a>
+        </div>
+    </div>
+</body>
+
+</html>

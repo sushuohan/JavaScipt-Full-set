@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组字面量</title>
+    <script>
+        /*
+        1. 使用字面量来创建数组
+            - 语法：var 数组名 = [];
+        */
+
+        // 使用字面量创建数组时可以在创建的同时就指定数组中的元素
+        var arr = [1, 2, 3, 4, 5];
+        console.log(arr); // [1, 2, 3, 4, 5]
+
+        // 使用构造函数创建数组时也可以同时添加元素，只需要将要添加的元素作为构造函数的参数传递
+        var arr1 = new Array(10, 20, 30);
+        console.log(arr1); // [10, 20, 30]
+
+        // 用字面量的形式创建一个元素的数组
+        var arr2 = [10];
+        console.log(arr2); // [10]
+
+        // 用构造函数的形式传递一个参数会表示创建一个长度为该参数的数组
+        var arr3 = new Array(10);
+        console.log(arr3); // [empty × 10]
+
+        // 2. 数组中的元素可以是任意的数据类型
+        arr4 = [true, 1, '2', null, undefined, NaN]
+        console.log(arr4); // [true, 1, "2", null, undefined, NaN]
+
+        // 也可以是对象
+        var obj = {
+            name: 'xiaosu',
+            age: 19
+        }
+        arr4[arr4.length] = obj;
+        // 通过数组输出对象属性
+        console.log(arr4[6].name); // 'xiaosu'
+
+        // 也可以是函数
+        function fun() {
+            console.log('1');
+        }
+        arr4[arr4.length] = fun;
+        // 通过数组调用函数
+        arr4[7](); // '1'
+
+        // 也可以是数组，我们称为二维数组
+        arr5 = [
+            [1, 2, 3],
+            [2, 3, 4],
+            [3, 4, 5]
+        ];
+        console.log(arr5[1]); // [2, 3, 4]
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

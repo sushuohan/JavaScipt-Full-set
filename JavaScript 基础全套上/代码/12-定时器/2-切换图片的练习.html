@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换图片的练习</title>
+    <script>
+        window.onload = function () {
+            // 创建一个数组来保存图片的路径
+            var imgArr = ["../DOM-文档对象模型/images/1.jpg", "../DOM-文档对象模型/images/2.jpg", "../DOM-文档对象模型/images/3.jpg",
+                "../DOM-文档对象模型/images/4.jpg", "../DOM-文档对象模型/images/5.jpg"
+            ]
+
+            // 创建一个变量，用来保存当前图片的索引
+            var index = 0;
+
+            // 创建一个变量用来保存定时器
+            var timer;
+
+            // 获取 btn01 开始按钮
+            var btn1 = document.getElementById('btn01');
+            btn1.onclick = function () {
+                clearInterval(timer);
+                // 获取 img 标签
+                var img1 = document.getElementById('image01');
+                // 开启一个定时器，来自动切换图片
+                timer = setInterval(function () {
+                    // 使索引自增
+                    index++;
+                    // 使之重复循环
+                    if (index == 5) {
+                        index = 0;
+                    }
+                    // 修改 img 的 src 属性值
+                    img1.src = imgArr[index];
+                }, 50)
+            }
+
+            // 获取 btn2 关闭按钮
+            var btn2 = document.getElementById('btn02');
+            btn2.onclick = function(){
+                /*
+                clearInterval() 可以接收任意参数
+                    - 如果参数是一个有效的定时器标识，则停止对应的定时器
+                    - 如果参数不是一个有效的标识，则什么也不做
+                */
+                clearInterval(timer);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img src="../DOM-文档对象模型/images/1.jpg" alt="" id="image01">
+    <br>
+    <button id="btn01">开始</button>
+    <button id="btn02">关闭</button>
+</body>
+
+</html>

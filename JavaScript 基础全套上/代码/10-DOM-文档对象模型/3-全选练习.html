@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选练习</title>
+    <script>
+        window.onload = function () {
+            var btn1 = document.getElementById("checkedAllBtn") // 全选按钮
+            var btn2 = document.getElementById("checkedNoBtn") // 全不选按钮
+            var btn3 = document.getElementById("checkedRevBtn") // 反选按钮
+            var btn4 = document.getElementById("sendBtn") // 提交按钮
+            var btn5 = document.getElementById('checkedAllBox'); // 同步按钮
+            var items = document.getElementsByName('items'); // 项目
+
+            var flag = false; // 全局判断
+
+            // 第一个按钮将全部项目设置为选择
+            btn1.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = true;
+                }
+
+                flag = true;
+
+                btn5.checked = flag;
+            }
+
+            // 第二个按钮将全部项目设置为不选择
+            btn2.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = false;
+                }
+
+                flag = false;
+
+                btn5.checked = flag;
+            }
+
+            // 第三个按钮将全部项目的选择置反
+            btn3.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = !items[i].checked;
+                }
+
+                flag = true;
+
+                for (var j = 0; j < items.length; j++) {
+                    if (!items[j].checked) {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                btn5.checked = flag;
+            }
+
+            // 第四个按钮提交选择的项目
+            btn4.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].checked) {
+                        alert(items[i].id);
+                    }
+                }
+            }
+
+            // 全局判断
+            for (var i = 0; i < items.length; i++) {
+
+                items[i].onclick = function () {
+
+                    btn5.checked = false;
+
+                    for (var j = 0; j < items.length; j++) {
+                        if (!items[j].checked) {
+                            btn5.checked = false;
+                            break;
+                        }
+                    }
+
+                    if (j == 4) {
+                        btn5.checked = true;
+                    }
+
+                }
+            }
+
+            // 第五个按钮用于反向绑定
+            btn5.onclick = function () {
+                if (btn5.checked) {
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].checked = true;
+                    }
+                } else {
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].checked = false;
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        #outer1 {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: aqua;
+            /* 设置文本居中 */
+            text-align: center;
+        }
+
+        #outer2 {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer2">
+        <img src="./images/2.jpg" alt="" style="width: 200px;height: 200px;">
+    </div>
+    <div id="outer1">>
+        <span>你喜欢的运动是？</span>
+        <input type="checkbox" name="" id="checkedAllBox">&nbsp;全选/全不选
+        <br />
+        <br />
+        <div>
+            <input type="checkbox" name="items" id="足球">足球
+            <input type="checkbox" name="items" id="篮球">篮球
+            <input type="checkbox" name="items" id="羽毛球">羽毛球
+            <input type="checkbox" name="items" id="乒乓球">乒乓球
+        </div>
+        <br />
+        <br />
+        <div>
+            <input type="button" value="全选" id="checkedAllBtn">&nbsp;&nbsp;
+            <input type="button" value="全不选" id="checkedNoBtn">&nbsp;&nbsp;
+            <input type="button" value="反选" id="checkedRevBtn">&nbsp;&nbsp;
+            <input type="button" value="提交" id="sendBtn">&nbsp;&nbsp;
+        </div>
+    </div>
+</body>
+
+</html>

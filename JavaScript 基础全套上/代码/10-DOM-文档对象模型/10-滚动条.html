@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动条</title>
+    <script>
+        window.onload = function () {
+            var div1 = document.getElementById('boxouter');
+            var div2 = document.getElementById('boxinner');
+            var btn1 = document.getElementById('btn01');
+            btn1.onclick = function () {
+                // 1. scrollHeight 和 scrollWidth 属性用于输出滚动区域的高度和宽度
+                console.log(div1.scrollHeight); // 600
+                console.log(div1.scrollWidth); // 600
+
+                // 2. scrollLeft 和 scrollTop 可以用来获取水平滚动条和垂直滚动条的距离
+                console.log(div1.scrollLeft);
+                console.log(div1.scrollTop);
+                // 当满足 Math.round(div1.scrollHeight - div1.scrollTop) == div1.clientHeight 时，说明滚动条滚动到底
+                console.log(Math.round(div1.scrollHeight - div1.scrollTop) == div1.clientHeight);
+            }
+
+            var inputArr = document.getElementsByTagName('input');
+            // 1. 滚动条案例 -- 滚动条事件 on
+            div1.onscroll = function () {
+                if (Math.round(div1.scrollHeight - div1.scrollTop) == div1.clientHeight) {
+                    // input 元素的 disabled 属性设置为 true 将导致其不可用
+                    inputArr[0].disabled = false;
+                    inputArr[1].disabled = false;
+                }
+            }
+        }
+    </script>
+    <style>
+        #boxouter {
+            width: 300px;
+            height: 300px;
+            background-color: rgb(72, 161, 184);
+            overflow: auto;
+        }
+
+        #boxinner {
+            width: 600px;
+            height: 600px;
+            color: rgb(85, 196, 150);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn01">点我一下</button>
+    <h3>请阅读如下协议</h3>
+    <div id="boxouter">
+        <div id="boxinner">
+            每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡每天洗澡澡
+        </div>
+    </div>
+    <!-- 给 input 标签添加 disabled='disabled' 将导致其不可用 -->
+    <input type="checkbox" name="" id="" disabled='disabled'>我已阅读并且保证遵守协议
+    <input type="submit" value="Submit" disabled='disabled'>
+</body>
+
+</html>
